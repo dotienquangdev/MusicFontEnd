@@ -1,0 +1,201 @@
+@media (min-width: 1000px) {
+    .headers {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 230px;
+        height: 70px;
+        padding: 0 var(--padding-section);
+        /* Khoảng cách bên trái và bên phải */
+        width: calc(100% - 230px);
+        /* Chiều rộng sẽ giảm bớt khoảng cách từ sidebar */
+        z-index: 100;
+        background-color: #170f23;
+        transition: left .4s;
+    }
+}
+
+@media (max-width: 1000px) {
+    .headers {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 60px;
+        height: 70px;
+        padding: 0 var(--padding-section);
+        /* Khoảng cách bên trái và bên phải */
+        width: calc(100% - 230px);
+        /* Chiều rộng sẽ giảm bớt khoảng cách từ sidebar */
+        z-index: 100;
+        background-color: #170f23;
+        transition: left .4s;
+    }
+}
+
+.header-search {
+    width: 60%;
+    /* Chiếm 60% chiều rộng của header */
+    height: 40px;
+    margin-left: 20px;
+    /* Khoảng cách từ bên trái */
+}
+
+.form-search {
+    width: 70%;
+    height: 80%;
+    border-radius: 20px;
+    background-color: #2f2739;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    margin: 10px;
+    color: #fff;
+}
+
+.header-user {
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+    /* Chiếm 40% chiều rộng của header */
+    align-items: center;
+    padding: 0 20px;
+    /* Khoảng cách giữa các phần tử */
+}
+
+.headerUser-setting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.headerUser-id {
+    margin-left: 10px;
+    /* Khoảng cách giữa icon setting và user ID */
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 8px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.search-results {
+    position: absolute;
+    top: 60px;
+    /* điều chỉnh theo chiều cao header */
+    left: 10px;
+    width: 400px;
+    margin: 5px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    padding: 10px;
+}
+
+.search-results ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.search-results li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #bebebe;
+    transition: background 0.2s ease;
+}
+
+.search-results li:last-child {
+    border-bottom: none;
+}
+
+.search-results li:hover {
+    background-color: #f5f5f5;
+}
+
+.search-results li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-results img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.search-results span {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.search-results p {
+    padding: 10px;
+    font-size: 14px;
+    color: #888;
+}
+
+
+
+.header-user {
+    position: relative;
+}
+
+.user-menu {
+    margin: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: rgb(52, 52, 52);
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-menu button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: #775b8f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.user-menu button:hover {
+    background-color: #b963ff;
+}
+
+.user-menu a {
+    text-decoration: none;
+}

@@ -1,0 +1,8 @@
+.singer-detail-item {}
+
+.singer-detail-item img {
+    border: 1px solid #adadad;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}

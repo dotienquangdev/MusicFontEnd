@@ -1,0 +1,67 @@
+.ibeary-h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.ibeary {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    /* border-bottom: 1px solid #eee; */
+    transition: background-color 0.2s ease;
+    margin: 3px;
+    cursor: pointer;
+    position: relative;
+
+}
+
+.ibeary:hover {
+    background-color: #2f2739;
+}
+
+.ibeary-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 16px;
+}
+
+.Ibeary-info {
+    flex: 1;
+}
+
+.Ibeary-info p {
+    margin: 4px 0;
+    color: #444;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.Ibeary-info p:last-child {
+    color: #888;
+    font-size: 14px;
+}
+
+.Ibeary-icon {
+    color: #e74c3c;
+    font-size: 20px;
+    margin-left: 12px;
+    transition: transform 0.2s ease;
+}
+
+.Ibeary-icon:hover {
+    transform: scale(1.2);
+    color: #c0392b;
+}
+
+.remove-heart {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}

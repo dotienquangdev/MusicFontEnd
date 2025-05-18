@@ -1,0 +1,259 @@
+.overview {
+    padding: 24px;
+    border-radius: 12px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.overviewh2 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.overviewText {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.overview-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    transition: background-color 0.2s ease;
+}
+
+.overview-item:hover {
+    background-color: #f0f0f0;
+}
+
+.overview span {
+    font-size: 12px;
+    color: #444;
+}
+
+.overviewAll {
+    display: flex;
+
+    flex-wrap: wrap;
+}
+
+.overview-topic {
+    width: 400px;
+}
+
+
+
+
+.overviewSong {
+    width: 500px;
+    margin: 30px 0;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.overviewSong-text {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.overviewSong-item {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.overviewSongItem-text {
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+}
+
+.overviewSongItem-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+}
+
+.overviewSongItem:hover {
+    background-color: #f1f1f1;
+}
+
+.overviewSongItem span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.overviewSongItem-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.overviewSongItem button {
+    padding: 6px 12px;
+    margin-left: 6px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.overviewSongItem button:hover {
+    background-color: #0056b3;
+}
+
+.overviewSongItem button:last-child {
+    background-color: #dc3545;
+}
+
+.overviewSongItem button:last-child:hover {
+    background-color: #a71d2a;
+}
+
+
+
+
+/* Nền phủ toàn màn hình hơi mờ, tạo hiệu ứng modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Khung modal chính */
+.modal-content {
+    background-color: #fff;
+    width: 480px;
+    max-width: 90vw;
+    padding: 24px 32px;
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    animation: fadeInScale 0.25s ease forwards;
+}
+
+/* Hiệu ứng mở modal */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Tiêu đề modal */
+.modal-content h3 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #1d1d1d;
+}
+
+/* Label cho input */
+.modal-content label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Input phong cách hiện đại, border dưới */
+.modal-content input[type="text"],
+.modal-content input[type="number"] {
+    width: 100%;
+    padding: 10px 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    outline-offset: 2px;
+    transition: border-color 0.3s ease;
+    background-color: transparent;
+    color: #333;
+    font-weight: 400;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="number"]:focus {
+    border-bottom-color: #ff4b3e;
+    /* màu đỏ cam của zing */
+    outline: none;
+}
+
+/* Nút bấm */
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+/* Nút cập nhật */
+.modal-buttons button:first-child {
+    background-color: #ff4b3e;
+    /* màu đỏ cam đặc trưng Zing */
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.modal-buttons button:first-child:hover {
+    background-color: #e03d30;
+}
+
+/* Nút hủy */
+.modal-buttons button:last-child {
+    background-color: transparent;
+    color: #555;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.25s ease;
+}
+
+.modal-buttons button:last-child:hover {
+    background-color: #f0f0f0;
+}

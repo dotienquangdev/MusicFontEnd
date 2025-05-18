@@ -1,0 +1,174 @@
+#menu {
+    background-color: #170f23;
+    width: 240px;
+    height: 100vh;
+    padding: 16px 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #dadada;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.menu-link i {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.menu-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.menu-link.active {
+    background-color: #2a213a;
+    color: #fff;
+    border-left: 3px solid #9b4de0;
+    /* border: 1px solid red; */
+    border-radius: 8px 0 0 8px;
+}
+
+.menu-link.active i,
+.menu-link.active span {
+    color: #9b4de0;
+}
+
+.menu-section {
+    margin-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.upgrade-banner {
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    margin: 24px 20px;
+    padding: 16px;
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+}
+
+.upgrade-button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: yellow;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.create-playlist {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #dadada;
+}
+
+.create-playlist:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+
+/* Mặc định: màn hình lớn */
+.menu-link span {
+    display: inline;
+}
+
+@media (min-width: 1000px) {
+    .menu-logo_in img {
+        border-radius: 50%;
+        width: 100px;
+        margin: 0 auto;
+        display: block;
+        animation: rotate360 8s linear infinite;
+    }
+
+    @keyframes rotate360 {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+
+    .menu-logo-img {
+        content: url("https://yt3.googleusercontent.com/ytc/AIdro_kfPqO-m9zcBxusjVAWHXrEVzNn2zFiauJ5D9VKmCBNO8g=s900-c-k-c0x00ffffff-no-rj");
+        width: 120px;
+        margin: 0 auto;
+        display: block;
+    }
+
+}
+
+/* Màn hình nhỏ hơn 1000px */
+@media (max-width: 1000px) {
+    .menu-link span {
+        display: none;
+    }
+
+    .menu-logo-img {
+        content: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm_h5hCCB0LIBJW8vliz-FbxiJbc9B_pO2fA&s");
+        width: 45px;
+        height: 30px;
+        margin: 5px;
+    }
+
+    #menu {
+        width: 50px;
+        padding: 16px 0;
+    }
+
+    .menu-link {
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .create-playlist span {
+        display: none;
+    }
+
+    .create-playlist {
+        justify-content: center;
+    }
+
+    .upgrade-banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 8px;
+    }
+
+    .upgrade-banner div {
+        display: none;
+    }
+
+    .upgrade-banner button {
+        display: none;
+    }
+}

@@ -1,0 +1,113 @@
+/* Container chính */
+.topic-detail {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    /* height: 100vh; */
+    /* Đảm bảo container chính có chiều cao tối thiểu để thanh cuộn hoạt động */
+    overflow: hidden;
+    /* Giới hạn overflow ra ngoài container chính */
+}
+
+/* Thông tin chính về chủ đề */
+.topic-detail-main {
+    width: 400px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.topic-detail-main h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #4B0082;
+}
+
+.topic-detail-main img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.topic-detail-main p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Danh sách bài hát */
+.topic-detail-item {
+    width: 600px;
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+/* Danh sách bài hát - cải thiện thanh cuộn */
+.topic-detail-item ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    /* 4 bài, mỗi bài khoảng 100px */
+    color: #ffffff;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+
+.songItem-detail {
+    width: 200px;
+    height: 80px;
+    display: flex;
+    color: #ffffff;
+    left: 10px;
+}
+
+.songItem-detail span {
+    display: block;
+}
+
+/* Tùy chỉnh thanh cuộn */
+.topic-detail-item ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.topic-detail-item ul::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.topic-detail-item ul::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+
+/* Styling từng bài hát */
+.topic-detail-item ul li {
+    display: flex;
+    width: 400px;
+    height: 80px;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+}
+
+.topic-detail-item ul li:hover {
+    background: #444;
+}
+
+.topic-detail-item ul li img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.topic-detail-item ul li span {
+    font-size: 18px;
+    color: #fff;
+}

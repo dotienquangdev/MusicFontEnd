@@ -1,0 +1,84 @@
+.song-detail {
+    display: flex;
+    margin: 5px;
+    flex-wrap: wrap;
+    color: white;
+    margin: 0 auto;
+    justify-content: space-between;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.song-detail-main {
+    width: 300px;
+}
+
+.song-detail-mai-text {
+    width: 500px;
+}
+
+.song-detail .song-detail-mai-List_h3 {
+    color: white;
+}
+
+.song-detail-mai-text {
+    width: 450px;
+}
+
+.song-detail-mai-text-item a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.song-detail-mai-text-item a img {
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.song-detail h2 {
+    font-size: 28px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.song-detail p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.song-detail img {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.song-detail h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #444;
+}
+
+.song-detail ul {
+    list-style: none;
+    padding: 0;
+}
+
+.song-detail ul li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    background-color: #170f23;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.song-detail-mai-text ul li:hover {
+    background-color: #535151;
+}

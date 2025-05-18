@@ -1,0 +1,83 @@
+.mainTop {
+    /* width: 100%;
+    height: auto; */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.mainTop i {
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.mainTop i:hover {
+    color: #ccc;
+}
+
+.mainTop-img-wrapper {
+    display: flex;
+    overflow-x: hidden;
+    /* Ẩn phần thừa */
+    scroll-behavior: smooth;
+    gap: 16px;
+    padding: 10px 0;
+    scrollbar-width: none;
+}
+
+.mainTop-img-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.mainTop-img {
+    flex: 0 0 auto;
+    width: 220px;
+    height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 1s ease;
+    /* Thêm độ trễ 1 giây */
+}
+
+.mainTop-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease, filter 1s ease;
+    /* Thêm độ trễ 1 giây */
+}
+
+.mainTop-img:hover img {
+    transform: scale(1.08);
+    filter: brightness(85%);
+}
+
+@media (max-width: 1200px) {
+    .mainTop-img:nth-child(n+5) {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .mainTop-img:nth-child(n+4) {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainTop-img:nth-child(n+3) {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .mainTop-img:nth-child(n+2) {
+        display: none;
+    }
+}
