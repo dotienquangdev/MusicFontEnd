@@ -28,8 +28,12 @@ export const _post = async (path, data) => {
             Accept: "application/json",
             "Content-Type": "application/json"
         };
-        options.body = JSON.stringify(data);
+        // options.body = JSON.stringify(data);
+        console.log("Data gửi lên:", data);
+
     }
+    console.log("Data gửi lên:", data);
+
     console.log("pathhhhhh: " + API + path);
 
     const response = await fetch(API + path, options);
