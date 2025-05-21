@@ -1,4 +1,5 @@
-import { get, _get, _delete, _patch } from "../utils/requist";
+import { get, _get, _delete, _patch, _post } from "../utils/requist";
+import axios from "axios";
 
 export const createSong = async (data) => {
     const response = await _get(`/song`, data);
@@ -22,6 +23,11 @@ export const createSongTopicId = async (topicId) => {
     return result;
 };
 
+export const createPostSong = async (data) => {
+    const response = await _post(`/song/create`, data);
+    const result = await response.json();
+    return result;
+}
 
 
 const editSong = async (id) => {

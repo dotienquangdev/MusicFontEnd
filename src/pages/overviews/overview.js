@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import "./overview.css"
 import { loginUsers, loginUserDelete } from "../../services/user";
 import { createSinger } from "../../services/singer";
-import { createSong } from "../../services/song";
+import { createPostSong, createSong } from "../../services/song";
 import { createTopic } from "../../services/topic";
 import { deleteUser, deleteUserDelete } from "../../services/user";
 import { deleteSong } from "../../services/song";
@@ -18,9 +18,20 @@ export default function Overview({ title }) {
 
     // Lấy thông tin user từ localStorage
     const user = JSON.parse(localStorage.getItem("user"));
-    const userLevel = user?.level || 1;
-    console.log(user);
 
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [newSongData, setNewSongData] = useState({
+        title: "",
+        avatar: "",
+        description: "",
+        like: 0,
+        audio: "",
+        lyrics: "",
+        slug: ""
+    });
+
+    const userLevel = user?.level || 1;
+    // console.log(user);
 
     const [overview, setOverview] = useState([]);
     const [overviewSong, setOverviewSong] = useState([]);
@@ -35,6 +46,37 @@ export default function Overview({ title }) {
         title: "",
         position: 0
     });
+
+    const handleAddSongSubmit = async () => {
+        try {
+            const result = await createPostSong(newSongData); // giả sử createPostSong là API post
+            if (result && result.data) {
+                alert("Thêm bài hát thành công!");
+                setShowAddModal(false);
+                setNewSongData({
+                    title: "",
+                    avatar: "",
+                    description: "",
+                    like: 0,
+                    audio: "",
+                    lyrics: "",
+                    singerId: "",
+                    topicId: "",
+                    slug: "",
+                    status: "active",   // thêm nếu backend yêu cầu
+                    deleted: false      // thêm nếu backend yêu cầu
+                });
+                const updatedSongs = await createSong();
+                setSong(updatedSongs.song || []);
+            } else {
+                alert("Thêm bài hát thất bại!");
+            }
+        } catch (error) {
+            console.error("Lỗi thêm bài hát:", error);
+            alert("Lỗi khi thêm bài hát!");
+        }
+    };
+
 
     const handleEditClick = async (id) => {
         try {
@@ -177,6 +219,7 @@ export default function Overview({ title }) {
 
                 <div className="overviewSong">
                     <h2 className="overviewSong-text">Danh sách bài hát:  {song.length}</h2>
+                    <button onClick={() => setShowAddModal(true)}>Thêm mới bài hát</button>
                     <ul className="overviewSong-item">
                         {song.length > 0 ? (
                             song.map(item => (
@@ -200,6 +243,91 @@ export default function Overview({ title }) {
                 </div>
 
                 {/* Modal sửa bài hát */}
+                {showAddModal && (
+                    <div className="modal-overlay">
+                        <div className="modal-content">
+                            <h3>Thêm bài hát mới</h3>
+
+                            <label htmlFor="title">Tên bài hát</label>
+                            <input
+                                id="title"
+                                type="text"
+                                value={newSongData.title}
+                                onChange={(e) => setNewSongData({ ...newSongData, title: e.target.value })}
+                            />
+
+                            <label htmlFor="avatar">Avatar</label>
+                            <input
+                                id="avatar"
+                                type="text"
+                                value={newSongData.avatar}
+                                onChange={(e) => setNewSongData({ ...newSongData, avatar: e.target.value })}
+                            />
+
+                            <label htmlFor="description">Mô tả</label>
+                            <input
+                                id="description"
+                                type="text"
+                                value={newSongData.description}
+                                onChange={(e) => setNewSongData({ ...newSongData, description: e.target.value })}
+                            />
+
+                            <label htmlFor="singerId">Ca sĩ</label>
+                            <select
+                                id="singerId"
+                                value={newSongData.singerId}
+                                onChange={(e) => setNewSongData({ ...newSongData, singerId: e.target.value })}
+                            >
+                                <option value="">-- Chọn ca sĩ --</option>
+                                {singer.map(s => (
+                                    <option key={s._id} value={s._id}>{s.fullName}</option>
+                                ))}
+                            </select>
+
+                            <label htmlFor="topicId">Chủ đề</label>
+                            <select
+                                id="topicId"
+                                value={newSongData.topicId}
+                                onChange={(e) => setNewSongData({ ...newSongData, topicId: e.target.value })}
+                            >
+                                <option value="">-- Chọn chủ đề --</option>
+                                {topic.map(t => (
+                                    <option key={t._id} value={t._id}>{t.title}</option>
+                                ))}
+                            </select>
+
+                            <label htmlFor="like">Like</label>
+                            <input
+                                id="like"
+                                type="number"
+                                value={newSongData.like}
+                                onChange={(e) => setNewSongData({ ...newSongData, like: Number(e.target.value) })}
+                            />
+
+                            <label htmlFor="audio">Audio</label>
+                            <input
+                                id="audio"
+                                type="text"
+                                value={newSongData.audio}
+                                onChange={(e) => setNewSongData({ ...newSongData, audio: e.target.value })}
+                            />
+
+                            <label htmlFor="lyrics">Lời bài hát</label>
+                            <input
+                                id="lyrics"
+                                type="text"
+                                value={newSongData.lyrics}
+                                onChange={(e) => setNewSongData({ ...newSongData, lyrics: e.target.value })}
+                            />
+
+                            <div className="modal-buttons">
+                                <button onClick={handleAddSongSubmit}>Thêm mới</button>
+                                <button onClick={() => setShowAddModal(false)}>Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {editId && (
                     <div className="modal-overlay">
                         <div className="modal-content">
