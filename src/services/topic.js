@@ -6,3 +6,10 @@ export const createTopic = async (params) => {
     const result = await response.json();
     return result;
 };
+
+export const createTopicId = async (id) => {
+    const response = await _get(`/topic/${id}`);
+    const result = await response.json();
+    return result;
+};
+

@@ -1,4 +1,9 @@
 @media (min-width: 1000px) {
+    :root {
+        --primary-color: #170f23;
+
+    }
+
     .headers {
         display: flex;
         align-items: center;
@@ -7,11 +12,9 @@
         left: 230px;
         height: 70px;
         padding: 0 var(--padding-section);
-        /* Khoảng cách bên trái và bên phải */
         width: calc(100% - 230px);
-        /* Chiều rộng sẽ giảm bớt khoảng cách từ sidebar */
         z-index: 100;
-        background-color: #170f23;
+        background-color: var(--primary-color);
         transition: left .4s;
     }
 }
@@ -29,7 +32,7 @@
         width: calc(100% - 230px);
         /* Chiều rộng sẽ giảm bớt khoảng cách từ sidebar */
         z-index: 100;
-        background-color: #170f23;
+        background-color: var(--primary-color);
         transition: left .4s;
     }
 }
@@ -58,10 +61,8 @@
     display: flex;
     justify-content: flex-end;
     width: 40%;
-    /* Chiếm 40% chiều rộng của header */
     align-items: center;
     padding: 0 20px;
-    /* Khoảng cách giữa các phần tử */
 }
 
 .headerUser-setting {
@@ -199,3 +200,127 @@ a {
 .user-menu a {
     text-decoration: none;
 }
+
+/* ////////////////// */
+/*
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.switch {
+    display: none;
+}
+
+.switch-container label i {
+    font-size: 20px;
+    color: var(--icon-color);
+}
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --header-bg: #f1f1f1;
+    --search-bg: #ffffff;
+    --menu-bg: #ffffff;
+    --hover-color: #e0e0e0;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1e1e1e;
+    --search-bg: #2a2a2a;
+    --menu-bg: #1e1e1e;
+    --hover-color: #333333;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.headers {
+    background-color: var(--header-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.header-search input {
+    background-color: var(--search-bg);
+    color: var(--text-color);
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.search-results {
+    background-color: var(--menu-bg);
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    z-index: 100;
+}
+
+.search-results ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.search-results li {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.search-results li:hover {
+    background-color: var(--hover-color);
+}
+
+.search-results img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.user-menu {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: var(--menu-bg);
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 100;
+    border-radius: 6px;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.switch {
+    display: none;
+}
+
+.switch+label {
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.light i,
+.dark i {
+    color: var(--text-color);
+}
+
+*/

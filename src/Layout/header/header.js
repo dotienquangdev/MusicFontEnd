@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
+import { createSong } from "../../services/song";
 
 export default function Header() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -10,6 +11,18 @@ export default function Header() {
     const [debounceTimeout, setDebounceTimeout] = useState(null);
     const [user, setUser] = useState(null); // Lưu thông tin người dùng
     const [isMenuOpen, setIsMenuOpen] = useState(false); // Trạng thái menu người dùng
+
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(prev => (prev === "dark" ? "light" : "dark"));
+    };
+
 
     // Hàm loại bỏ dấu tiếng Việt
     function removeVietnameseTones(str) {
@@ -44,9 +57,8 @@ export default function Header() {
     const fetchSongs = async (query) => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:9000/api/song`);
-            const data = await response.json();
-            const songs = data.song || [];
+            const response = await createSong();
+            const songs = response.song || [];
 
             const keywords = removeVietnameseTones(query.toLowerCase()).split(/\s+/);
 
@@ -89,6 +101,11 @@ export default function Header() {
         setIsMenuOpen(false); // Đóng menu
     };
 
+
+
+
+
+
     return (
         <div className="headers">
             <div className="header-search form-control" id="form-search">
@@ -125,6 +142,25 @@ export default function Header() {
             )}
 
             <div className="header-user">
+
+                <div className="switch-container">
+                    <input
+                        type="checkbox"
+                        className="switch"
+                        id="themeSwitch"
+                        onChange={toggleTheme}
+                        checked={theme === "dark"}
+                    />
+                    <label htmlFor="themeSwitch">
+                        {theme === "dark" ? (
+                            <i className="fa-solid fa-sun"></i>
+                        ) : (
+                            <i className="fa-solid fa-moon"></i>
+                        )}
+                    </label>
+                </div>
+
+
                 <div className="headerUser-setting">
                     <i className="fa-solid fa-gear"></i>
                 </div>

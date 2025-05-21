@@ -2,6 +2,7 @@ import "./singerDetail.css";
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
+import { createSinger } from "../../../../services/singer";
 
 export default function SingerDetail({ title }) {
     const { id } = useParams();
@@ -10,8 +11,11 @@ export default function SingerDetail({ title }) {
     useEffect(() => {
         const fetchAPI = async () => {
             try {
-                const singerRes = await fetch('http://localhost:9000/api/singer');
-                const singerData = await singerRes.json();
+                // const singerRes = await fetch('http://localhost:9000/api/singer');
+                // const singerData = await singerRes.json();
+                const singerData = await createSinger();
+
+                // console.log("id từ useParams:", singerData);
 
                 console.log("id từ useParams:", id);
                 console.log("Dữ liệu singer từ API:", singerData);

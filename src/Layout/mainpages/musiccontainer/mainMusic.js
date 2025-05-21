@@ -27,44 +27,6 @@ export default function MainMusic() {
         };
     }, []);
 
-    // useEffect(() => {
-    //     const fetchSongsAndSingers = async () => {
-    //         try {
-    //             const [songRes, singerRes] = await Promise.all([
-    //                 // fetch('http://localhost:9000/api/song'),
-    //                 // fetch('http://localhost:9000/api/singer'),
-
-    //                 fetch('https://music-back-end.vercel.app/api/song'),
-    //                 fetch('https://music-back-end.vercel.app/api/singer'),
-
-    //             ]);
-    //             console.log(songRes);
-    //             console.log(singerRes);
-
-    //             const songData = await songRes.json();
-    //             const singerData = await singerRes.json();
-    //             console.log(singerData);
-    //             console.log(singerRes);
-    //             const singerMap = new Map();
-    //             singerData.singer.forEach(singer => {
-    //                 singerMap.set(singer._id, singer.fullName);
-    //             });
-
-    //             const songsWithSinger = songData.song.map(song => ({
-    //                 ...song,
-    //                 singerName: singerMap.get(song.singerId) || "Không rõ",
-    //             }));
-
-    //             setSongs(songsWithSinger);
-    //         } catch (error) {
-    //             console.error("Lỗi khi fetch dữ liệu:", error);
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     };
-    //     fetchSongsAndSingers();
-    // }, []);
-
     useEffect(() => {
         const fetchSongsAndSingers = async () => {
             try {
@@ -72,9 +34,8 @@ export default function MainMusic() {
                     createSong(),
                     createSinger()
                 ]);
-                // console.log("songData:", songData);
-                // console.log("singerData:", singerData);
                 const singerMap = new Map();
+
                 singerData.singer.forEach(singer => {
                     singerMap.set(singer._id, singer.fullName);
                 });

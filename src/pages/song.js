@@ -1,29 +1,39 @@
 import React, { useEffect, useState } from 'react';
+import { createSong } from '../services/song';
 
 function Song() {
     const [songs, setSongs] = useState([]);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        fetch('http://localhost:9000/api/song')
-            .then(res => res.json())
-            .then(data => {
-                console.log('Dữ liệu trả về:', data);
-                if (data && Array.isArray(data)) {
-                    setSongs(data);
-                } else {
-                    setError('Không có dữ liệu bài hát');
-                }
-            })
-            .catch(err => {
-                console.error('Lỗi khi gọi API:', err);
-                setError('Không thể lấy dữ liệu từ server');
-            });
+    useEffect(async () => {
+        const dataSong = await createSong();
+        setSongs(dataSong.songs);
+        console.log(dataSong);
+        if (dataSong && Array.isArray(dataSong)) {
+            setSongs(dataSong);
+        } else {
+            setError('Không có dữ liệu bài hát');
+        }
+
+        // fetch('http://localhost:9000/api/song')
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log('Dữ liệu trả về:', data);
+        //         if (data && Array.isArray(data)) {
+        //             setSongs(data);
+        //         } else {
+        //             setError('Không có dữ liệu bài hát');
+        //         }
+        //     })
+        //     .catch(err => {
+        //         console.error('Lỗi khi gọi API:', err);
+        //         setError('Không thể lấy dữ liệu từ server');
+        //     });
     }, []);
 
     return (
         <div class="song">
-            <h2>Danh sách bài hát</h2>
+            <h2>Danh sách bài hát 12341234</h2>
             {error && <p>{error}</p>}
             <ul>
                 {songs.length > 0 ? (

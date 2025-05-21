@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { createSinger } from '../services/singer';
 
 function Home() {
     const [singers, setSingers] = useState([]);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        fetch('http://localhost:9000/api/singer')
-            .then(res => res.json())
-            .then(data => {
-                console.log('Dữ liệu trả về:', data);  // Debug dữ liệu trả về
-                if (data.singer) {  // Kiểm tra nếu trường singer có dữ liệu
-                    setSingers(data.singer);  // Cập nhật dữ liệu từ trường singer
-                } else {
-                    setError('Không có dữ liệu ca sĩ');
-                }
-            })
-            .catch(err => {
-                console.error('Lỗi khi gọi API:', err);
-                setError('Không thể lấy dữ liệu từ server');
-            });
+    useEffect(async () => {
+        const data = await createSinger();
+        setSingers(data.singers);
+        // console.log(data);
+        // fetch('http://localhost:9000/api/singer')
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log('Dữ liệu trả về:', data);  // Debug dữ liệu trả về
+        //         if (data.singer) {  // Kiểm tra nếu trường singer có dữ liệu
+        //             setSingers(data.singer);  // Cập nhật dữ liệu từ trường singer
+        //         } else {
+        //             setError('Không có dữ liệu ca sĩ');
+        //         }
+        //     })
+
+
+        //     .catch(err => {
+        //         console.error('Lỗi khi gọi API:', err);
+        //         setError('Không thể lấy dữ liệu từ server');
+        //     });
     }, []);
 
     return (

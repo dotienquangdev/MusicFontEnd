@@ -4,7 +4,8 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
 
 // import { createSinger } from "../../../../services/singer";
-// import { createSongId, createSongTopicId } from "../../../../services/song";
+import { createSongId, createSongTopicId } from "../../../../services/song";
+import { createSinger } from "../../../../services/singer";
 
 export default function SongDetail({ title }) {
     const { id } = useParams();
@@ -15,23 +16,28 @@ export default function SongDetail({ title }) {
     useEffect(() => {
         const fetchSongAndRelated = async () => {
             try {
-                const res = await fetch(`http://localhost:9000/api/song/${id}`);
+                // const res = await fetch(`http://localhost:9000/api/song/${id}`);
                 // const res = await fetch(createSongId);
-                const data = await res.json();
+                const data = await createSongId(id)
                 setSong(data);
-
                 // Lấy tên ca sĩ
-                const singerRes = await fetch(`http://localhost:9000/api/singer`);
-                // const singerRes = await fetch(createSinger);
-                const singerData = await singerRes.json();
+                // const singerRes = await fetch(`http://localhost:9000/api/singer`);
+                // const singerData = await singerRes.json(); 
+                const singerData = await createSinger();
                 const singer = singerData.singer.find(s => s._id === data.singerId);
+                // console.log(singerData)
+
                 setSingerName(singer ? singer.fullName : 'Không rõ');
 
                 // Lấy các bài hát cùng chủ đề
                 if (data.topicId) {
-                    const relatedRes = await fetch(`http://localhost:9000/api/song?topicId=${data.topicId}`);
+                    // const relatedRes = await fetch(`http://localhost:9000/api/song?topicId=${data.topicId}`);
+                    // const relatedData = await relatedRes.json();
+                    const relatedData = await createSongTopicId(data.topicId);
+                    // console.log(relatedRes)
+                    // console.log(relatedData)
+                    // console.log(singerData)
                     // const relatedRes = await fetch(createSongTopicId);
-                    const relatedData = await relatedRes.json();
                     setRelatedSongs(relatedData.song.filter(s => s._id !== id));
                 }
             } catch (err) {

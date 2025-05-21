@@ -8,18 +8,17 @@ export default function Ibeary() {
     const [currentId, setCurrentId] = useState(() => {
         return localStorage.getItem('currentId') || '';
     });
-
     useEffect(() => {
         const fetchSong = async () => {
             const result = await createSong();
+            result.song.sort((a, b) => b.like - a.like);
+            data.sort((a, b) => b.like - a.like);
             setSong(result.song);
         }
-
         const data = JSON.parse(localStorage.getItem('likedSongs')) || [];
         setLikedSongs(data);
         fetchSong();
     }, []);
-
     const removeFromLiked = (id) => {
         const updatedSongs = likedSongs.filter(song => song._id !== id);
         setLikedSongs(updatedSongs);
@@ -30,7 +29,6 @@ export default function Ibeary() {
             const id = localStorage.getItem('currentId');
             setCurrentId(id);
         };
-
         window.addEventListener('songChanged', handleSongChanged);
         // console.log(currentId);
         return () => {
@@ -54,7 +52,6 @@ export default function Ibeary() {
                             }}
                             className="ibeary"
                         >
-
                             <img className="ibeary-img" src={song.avatar !== "z" ? song.avatar : 'default_image.jpg'} alt={song.title} />
                             <div className="Ibeary-info">
                                 <p>{song.title}</p>

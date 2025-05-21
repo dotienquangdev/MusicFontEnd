@@ -2,6 +2,9 @@ import './abumDetail.css';
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
+import { createSong } from '../../../../services/song';
+import { createSinger } from '../../../../services/singer';
+import { createTopicId } from '../../../../services/topic';
 export default function AbumDetail({ title }) {
     const { id } = useParams();
     const [songs, setSongs] = useState([]);
@@ -22,21 +25,18 @@ export default function AbumDetail({ title }) {
             window.removeEventListener('songChanged', handleSongChanged);
         };
     }, []);
-    console.log(songs)
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch chủ đề
-                const topicRes = await fetch(`http://localhost:9000/api/topic/${id}`);
-                const topicData = await topicRes.json();
+                const topicData = await createTopicId(id);
                 setTopic(topicData);
-                // Fetch tất cả bài hát
-                const songRes = await fetch(`http://localhost:9000/api/song`);
-                const songData = await songRes.json();
-                // Fetch danh sách ca sĩ
-                const singerRes = await fetch('http://localhost:9000/api/singer');
-                const singerData = await singerRes.json();
+
+                const songData = await createSong();
+                const singerData = await createSinger();
                 const singerMap = new Map();
+                console.log(songs);
 
                 singerData.singer.forEach(singer => {
                     singerMap.set(singer._id, singer.fullName);
