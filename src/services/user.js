@@ -136,7 +136,7 @@ const resetPasswordPost = async ({ email, password }) => {
             return { success: false, message: "Server không trả về JSON." };
         }
 
-        console.log("resulttttt:", result);
+        // console.log("resulttttt:", result);
 
         if (result.success) {
             alert("Đặt lại mật khẩu thành công. Vui lòng đăng nhập lại.");

@@ -18,24 +18,20 @@ export default function Login({ title }) {
     const handleLogin = async () => {
         setEmailError("");
         setPasswordError("");
-
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         let hasError = false;
-
         if (!email) {
             setEmailError("Vui lòng nhập email.");
             hasError = true;
-        } else if (!emailRegex.test(email)) {
+        }
+        if (!emailRegex.test(email)) {
             setEmailError("Email không hợp lệ.");
             hasError = true;
         }
-
         if (!password) {
             setPasswordError("Vui lòng nhập mật khẩu.");
             hasError = true;
         }
-
         if (hasError) return;
 
         const result = await loginUser({ email, password });
@@ -54,12 +50,16 @@ export default function Login({ title }) {
             }
         }
     };
-
     return (
         <>
             <Helmet>
                 <title>{title}</title>
             </Helmet>
+            <div>
+                <span style={{ fontSize: "9px" }}>dotienquang12@gmail.com -----   Quang@12</span>
+                <span style={{ fontSize: "9px" }}>22a1001d0276@students.hou.edu.vn  -----  Quang@12</span>
+                <span style={{ fontSize: "9px" }}>admin@gmail.com  ----   Quang@12</span>
+            </div >
             <div className="userLogin">
                 <h1>Đăng Nhập</h1>
                 <ul className="userInput">
@@ -82,7 +82,6 @@ export default function Login({ title }) {
                     />
                     {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
                 </ul>
-
                 <div className="userButton">
                     <button onClick={handleLogin}>Đăng Nhập</button>
                     <br />
