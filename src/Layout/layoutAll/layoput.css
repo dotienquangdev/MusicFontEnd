@@ -23,7 +23,7 @@
  }
 
  .main-wrapper {
-     display: flex;
+     /* display: flex; */
      flex: 1;
      overflow: hidden;
      transition: margin-left 0.3s ease;

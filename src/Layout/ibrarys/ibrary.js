@@ -8,6 +8,30 @@ export default function Ibeary() {
     const [currentId, setCurrentId] = useState(() => {
         return localStorage.getItem('currentId') || '';
     });
+
+    const [likedSingers, setLikedSingers] = useState([]);
+
+    const toggleLike = (singer) => {
+        const exists = likedSingers.find(item => item._id === singer._id);
+        let updatedList;
+        if (exists) {
+            updatedList = likedSingers.filter(item => item._id !== singer._id);
+        } else {
+            updatedList = [...likedSingers, singer];
+        }
+        setLikedSingers(updatedList);
+        localStorage.setItem("likedSingers", JSON.stringify(updatedList));
+    };
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("likedSingers")) || [];
+        setLikedSingers(data);
+    }, []);
+
+    const removeFromLikedSinger = (id) => {
+        const updated = likedSingers.filter(item => item._id !== id);
+        setLikedSingers(updated);
+        localStorage.setItem("likedSingers", JSON.stringify(updated));
+    };
     useEffect(() => {
         const fetchSong = async () => {
             const result = await createSong();
@@ -38,7 +62,32 @@ export default function Ibeary() {
 
     return (
         <>
-            <h1 className="ibeary-h1">Danh sách các bài hát yêu thích</h1>
+            <div className="ibearySinger-All">
+                <h3 className="ibearySinger-h1">Ca sĩ bạn quan tâm</h3>
+                <ul className="ibearySinger-All-ul">
+                    {likedSingers.length === 0 ? (
+                        <p>Chưa có ca sĩ nào được quan tâm.</p>
+                    ) : (
+                        likedSingers.map(singer => (
+                            <li key={singer._id} className="ibearySinger">
+                                <img className="ibearySinger-img" src={singer.avatar} alt={singer.fullName} />
+                                <i class="fa-regular fa-square-caret-right ibearySingeri"></i>
+                                <div className="ibearySinger-info">
+                                    <p>{singer.fullName}</p>
+                                </div>
+                                <div
+                                    className="ibearySinger-care"
+                                    onClick={() => removeFromLikedSinger(singer._id)}
+                                    title="Bỏ quan tâm" >
+                                    Bỏ quan tâm
+                                </div>
+                            </li>
+                        ))
+                    )}
+                </ul>
+            </div>
+
+            <h3 className="ibeary-h1">Danh sách các bài hát yêu thích</h3>
             <ul>
                 {likedSongs.length === 0 ? (
                     <p>Chưa có bài hát nào được yêu thích.</p>

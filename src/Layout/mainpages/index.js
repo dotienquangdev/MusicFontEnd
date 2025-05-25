@@ -33,7 +33,7 @@ export default function MainpageIndex({ title }) {
                 </span>
 
                 <footer className='pt-2 pb-2 mt-4 text-center' style={{ borderTop: "1px solid #3f3f3f", display: "flex", justifyContent: "center", alignItems: "center", height: "100px", color: "#ffffff", fontSize: "20px" }}>
-                    {system?.footer || "Đỗ Tiến Quang Project ZingMb3"}
+                    {system?.footer || "Đỗ Tiến Quang Project Zing mp3"}
 
                 </footer>
             </div>

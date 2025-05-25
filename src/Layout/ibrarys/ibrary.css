@@ -1,8 +1,6 @@
 .ibeary-h1 {
-    text-align: center;
     margin-top: 20px;
-    color: #333;
-    font-size: 24px;
+    color: #ffffff;
     font-weight: bold;
 }
 
@@ -64,4 +62,75 @@
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.ibearySinger-All {
+    width: 100%;
+}
+
+.ibearySinger-All-ul {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ibearySinger-img {
+    width: 150px;
+    transition: transform 1s ease, filter 1s ease;
+
+    border-radius: 50%;
+}
+
+.ibearySinger-img:hover {
+    transform: scale(1.08);
+    filter: brightness(120%);
+}
+
+.ibearySinger {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.ibearySingeri {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: -35px;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+
+}
+
+.ibearySinger:hover .ibearySingeri {
+    opacity: 1;
+}
+
+.ibearySinger-info {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ibearySinger-care {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    border-radius: 20px;
+    width: 150px;
+    height: 30px;
 }

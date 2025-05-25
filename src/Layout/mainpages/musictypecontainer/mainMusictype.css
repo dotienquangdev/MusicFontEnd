@@ -35,12 +35,40 @@
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
+.singer-itemImg {
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+}
+
 .singer-itemImg img {
-    width: 160px;
-    height: 160px;
+    /* position: absolute; */
+    width: 150px;
+    height: 150px;
+    display: block;
     transition: transform 1s ease, filter 1s ease;
     object-fit: cover;
     border-radius: 50%;
+}
+
+
+.singer-itemImgi {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    /* không gây cản trở khi click ảnh */
+
+}
+
+.singer-itemImg:hover .singer-itemImgi {
+    opacity: 1;
 }
 
 .singer-itemImg img:hover {
@@ -67,4 +95,64 @@
 
 .volume-control input[type="range"] {
     width: 100px;
+}
+
+.singer-care {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.singer-care-true {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    border-radius: 20px;
+    width: 120px;
+    height: 30px;
+}
+
+.singer-care-false {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 20px;
+    width: 120px;
+    height: 30px;
+}
+
+.like-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
 }

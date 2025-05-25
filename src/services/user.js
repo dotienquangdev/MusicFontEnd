@@ -59,7 +59,10 @@ const postRegister = async ({ fullName, email, password }) => {
         const result = await res.json();
 
         if (res.ok) {
-            return { success: true, user: result.user };
+            return {
+                success: true,
+                user: result.user
+            };
         } else {
             return {
                 success: false,
