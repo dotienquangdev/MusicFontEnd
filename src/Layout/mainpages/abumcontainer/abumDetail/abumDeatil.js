@@ -36,7 +36,7 @@ export default function AbumDetail({ title }) {
                 const songData = await createSong();
                 const singerData = await createSinger();
                 const singerMap = new Map();
-                console.log(songs);
+                // console.log(songs);
 
                 singerData.singer.forEach(singer => {
                     singerMap.set(singer._id, singer.fullName);
