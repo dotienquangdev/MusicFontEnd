@@ -83,7 +83,7 @@ export default function SingerDetail({ title }) {
                                 <div className="singerDetailImg-Skeleton">
                                     <Skeleton />
                                 </div>
-                                <div>
+                                <div className="singerDetails-Skeleton">
                                     {[...Array(4)].map((item, index) => (
                                         <li className="singerDetail-Skeleton" key={index}>
                                             <div className="singerDetail-Skeleton-item">
@@ -91,7 +91,6 @@ export default function SingerDetail({ title }) {
                                             </div>
                                             <div className="singerDetail-Skeleton-text">
                                                 <Skeleton />
-                                                {/* <Skeleton /> */}
                                             </div>
                                         </li>
                                     ))}

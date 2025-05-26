@@ -87,7 +87,7 @@ export default function Ibeary() {
                 </ul>
             </div>
 
-            <h3 className="ibeary-h1">Danh sách các bài hát yêu thích</h3>
+            <h3 className="ibeary-h1">Yêu thích</h3>
             <ul>
                 {likedSongs.length === 0 ? (
                     <p>Chưa có bài hát nào được yêu thích.</p>

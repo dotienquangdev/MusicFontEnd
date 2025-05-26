@@ -80,22 +80,29 @@
 .singerDetailAll-skeleton {
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
     height: 100%;
 }
 
 .singerDetailImg-Skeleton {
-    margin: 20px;
-    width: 200px;
-    height: 200px;
+    margin: 30px;
+    width: 150px;
+    height: 150px;
+
     border-radius: 50%;
+    border: 1px solid red;
     background-color: #372948;
+}
+
+.singerDetails-Skeleton {
+    margin-right: 30px;
 }
 
 .singerDetail-Skeleton {
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
-
+    flex-wrap: wrap;
     background-color: #2f2739;
     border-radius: 20px;
     margin: 10px;
@@ -106,8 +113,8 @@
 .singerDetail-Skeleton-item {
     margin: 10px;
     background-color: rgb(173, 173, 255);
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
     border-radius: 20px;
 }
 

@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 20px;
+    /* padding: 20px; */
     overflow: hidden;
     justify-content: center;
 }
@@ -23,10 +23,8 @@
 .mainTop-img-wrapper {
     display: flex;
     overflow-x: hidden;
-    /* Ẩn phần thừa */
     scroll-behavior: smooth;
     gap: 16px;
-    padding: 10px 0;
     scrollbar-width: none;
 }
 
@@ -36,8 +34,8 @@
 
 .mainTop-img {
     flex: 0 0 auto;
-    width: 220px;
-    height: 160px;
+    width: 200px;
+    height: 150px;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
