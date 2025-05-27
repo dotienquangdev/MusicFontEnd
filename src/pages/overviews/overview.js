@@ -69,7 +69,7 @@ export default function Overview({ title }) {
                 const updatedSongs = await createSong();
                 setSong(updatedSongs.song || []);
             } else {
-                alert("Thêm bài hát thất bại!");
+                alert("Thêm bài hát thất bại !");
             }
         } catch (error) {
             console.error("Lỗi thêm bài hát:", error);
@@ -219,7 +219,7 @@ export default function Overview({ title }) {
 
                 <div className="overviewSong">
                     <h2 className="overviewSong-text">Danh sách bài hát:  {song.length}</h2>
-                    <button onClick={() => setShowAddModal(true)}>Thêm mới bài hát</button>
+                    <button onClick={() => setShowAddModal(true)} style={{ margin: "3px" }}> + Thêm mới bài hát</button>
                     <ul className="overviewSong-item">
                         {song.length > 0 ? (
                             song.map(item => (
@@ -429,7 +429,8 @@ export default function Overview({ title }) {
                                     <span>{item.email}</span>
                                     {userLevel === 3 && (
                                         <span>
-                                            <button onClick={() => handleDeleteAll(item._id)}>Khôi phục</button>
+                                            <button style={{ margin: "1px" }} onClick={() => handleDeleteAll(item._id)}>Khôi phục</button>
+                                            <button style={{ margin: "1px" }} onClick={() => { }}>Xóa VV</button>
                                         </span>
                                     )}
                                 </li>

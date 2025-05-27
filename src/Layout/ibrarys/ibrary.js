@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import "./ibrary.css";
 import { createSong } from "../../services/song";
-
+import { createTopic } from "../../services/topic";
+import { Link } from 'react-router-dom';
 export default function Ibeary() {
     const [song, setSong] = useState([]);
     const [likedSongs, setLikedSongs] = useState([]);
+
     const [currentId, setCurrentId] = useState(() => {
         return localStorage.getItem('currentId') || '';
     });
-
     const [likedSingers, setLikedSingers] = useState([]);
+
+    const [topic, setTopic] = useState([]);
+    const [likeAbums, setLikeAbums] = useState([]);
 
     const toggleLike = (singer) => {
         const exists = likedSingers.find(item => item._id === singer._id);
@@ -22,6 +26,8 @@ export default function Ibeary() {
         setLikedSingers(updatedList);
         localStorage.setItem("likedSingers", JSON.stringify(updatedList));
     };
+
+
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("likedSingers")) || [];
         setLikedSingers(data);
@@ -33,6 +39,14 @@ export default function Ibeary() {
         localStorage.setItem("likedSingers", JSON.stringify(updated));
     };
     useEffect(() => {
+
+        const fetchAbum = async () => {
+            const result = await createTopic();
+            result.topic.sort((a, b) => b.like - a.like);
+            data.sort((a, b) => b.like - a.like);
+            setTopic(result.topic);
+        }
+
         const fetchSong = async () => {
             const result = await createSong();
             result.song.sort((a, b) => b.like - a.like);
@@ -40,7 +54,13 @@ export default function Ibeary() {
             setSong(result.song);
         }
         const data = JSON.parse(localStorage.getItem('likedSongs')) || [];
+        const dataAbum = JSON.parse(localStorage.getItem('likeAbums')) || [];
+
         setLikedSongs(data);
+        setLikeAbums(dataAbum);
+
+
+        fetchAbum();
         fetchSong();
     }, []);
     const removeFromLiked = (id) => {
@@ -48,6 +68,13 @@ export default function Ibeary() {
         setLikedSongs(updatedSongs);
         localStorage.setItem('likedSongs', JSON.stringify(updatedSongs));
     };
+
+    const removeFromAbum = (id) => {
+        const updateAbums = likeAbums.filter(topic => topic._id !== id);
+        setLikeAbums(updateAbums);
+        localStorage.setItem('likeAbums', JSON.stringify(updateAbums));
+    };
+
     useEffect(() => {
         const handleSongChanged = () => {
             const id = localStorage.getItem('currentId');
@@ -59,6 +86,9 @@ export default function Ibeary() {
             window.removeEventListener('songChanged', handleSongChanged);
         };
     }, []);
+    // console.log("likedSongs", likedSongs);
+    // console.log("likedSingers", likedSingers);
+    // console.log("abumm", likeAbums);
 
     return (
         <>
@@ -86,6 +116,38 @@ export default function Ibeary() {
                     )}
                 </ul>
             </div>
+
+            <h3 className="ibeary-h1">Abum</h3>
+            <ul className="ibearyAbum">
+                {likeAbums.length === 0 ? (
+                    <p>Abum yêu thích rỗng.</p>
+                ) : (
+                    likeAbums.map(topic => (
+
+                        <li key={topic._id}
+                            onClick={() => {
+                                localStorage.setItem('queuePlaylist', JSON.stringify(likeAbums));
+                                localStorage.setItem('currentId', topic._id);
+                                window.dispatchEvent(new Event("songChanged"));
+                            }}
+                            className="ibearyAbum-item"
+                        >
+                            <Link to={`/topic/${topic._id}`} key={topic._id}>
+                                <img className="ibearyAbum-img" src={topic.avatar !== "z" ? topic.avatar : 'default_image.jpg'} alt={topic.title} />
+                            </Link>
+                            <div className="ibearyAbum-info">
+                                <p>{topic.title}</p>
+                                <i
+                                    className="fa-solid fa-heart removeAbum-heart ibearyAbum-icon"
+                                    title="Bỏ yêu thích"
+                                    onClick={() => removeFromAbum(topic._id)}
+                                ></i>
+                            </div>
+                        </li>
+                    ))
+                )}
+            </ul >
+            <h3 className="ibeary-h1">Playlist</h3>
 
             <h3 className="ibeary-h1">Yêu thích</h3>
             <ul>

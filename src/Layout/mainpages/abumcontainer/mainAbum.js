@@ -5,6 +5,7 @@ import { createTopic } from '../../../services/topic';
 export default function MainAbum() {
     const [topics, setTopics] = useState([]);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [likeAbum, setLikeAbum] = useState('');
     // useEffect(() => {
     //     fetch('http://localhost:9000/api/topic')
     //         .then(res => res.json())
@@ -71,24 +72,35 @@ export default function MainAbum() {
 
                 {topics.length > 0 ? (
                     topics.slice(0, 6).map((topic, key) => (
-                        <Link to={`/topic/${topic._id}`} key={topic._id}>
-                            <li key={topic._id} className="topic-item">
-                                <div className="topic-itemImg">
+                        <li key={topic._id} className="topic-item">
+                            <div className="topic-itemImg">
+                                <Link to={`/topic/${topic._id}`} key={topic._id}>
                                     <img
                                         src={topic.avatar}
                                         alt={topic.title}
                                     />
-                                    <span className="icont-Abum">
-                                        <i class="fa-solid fa-heart icontAbum icontAbum-heart"></i>
-                                        <i class="fa-regular fa-square-caret-right icontAbum icontAbum-caret"></i>
-                                        <i class="fa-solid fa-ellipsis icontAbum icontAbumellipsis"></i>
-                                    </span>
-                                </div>
-                                <div className="topic-itemTitle">
-                                    <span>{topic.title}</span>
-                                </div>
-                            </li>
-                        </Link>
+                                </Link>
+                                <span className="icont-Abum">
+                                    <i class="fa-solid fa-heart icontAbum icontAbum-heart"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            const likeAbums = JSON.parse(localStorage.getItem('likeAbums')) || [];
+                                            if (!likeAbums.some(item => item._id === topic._id)) {
+                                                likeAbums.push(topic);
+                                                localStorage.setItem('likeAbums', JSON.stringify(likeAbums));
+                                                setLikeAbum('Đã thêm vào yêu thích!');
+                                                setTimeout(() => setLikeAbum('', 3000));
+                                            }
+                                        }}
+                                    ></i>
+                                    <i class="fa-regular fa-square-caret-right icontAbum icontAbum-caret"></i>
+                                    <i class="fa-solid fa-ellipsis icontAbum icontAbumellipsis"></i>
+                                </span>
+                            </div>
+                            <div className="topic-itemTitle">
+                                <span>{topic.title}</span>
+                            </div>
+                        </li>
                     ))
                 ) : (
                     <li>Không có ca sỹ nào</li>

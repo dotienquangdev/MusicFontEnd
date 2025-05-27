@@ -150,3 +150,30 @@ ul li {
         opacity: 0;
     }
 }
+
+.ibearyAbum {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ibearyAbum-item {
+    display: block;
+    margin: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ibearyAbum-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.ibearyAbum-care {
+    color: red;
+}
+
+.ibearyAbum-info {
+    color: white;
+    /* display: flex; */
+}
