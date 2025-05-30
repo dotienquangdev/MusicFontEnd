@@ -5,14 +5,21 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { createSong } from '../../../services/song';
 import { createSinger } from '../../../services/singer';
+import Music from '../../../pages/overviews/Music';
 
 export default function MainMusic() {
+    const user = JSON.parse(localStorage.getItem("user"));
     const [songs, setSongs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [likeMessage, setLikeMessage] = useState('');
     const [currentId, setCurrentId] = useState(() => {
         return localStorage.getItem('currentId') || '';
     });
+    const [likedSongs, setLikedSongs] = useState(() => {
+        return JSON.parse(localStorage.getItem('likedSongs')) || [];
+    });
+
+    const isLiked = (songId) => likedSongs.some(item => item._id === songId);
 
     useEffect(() => {
         const handleSongChanged = () => {
@@ -83,13 +90,14 @@ export default function MainMusic() {
                         ) : (
                             songs.slice(0, 9).map(song => (
                                 <div key={song._id}>
-                                    <li
+                                    {/* <li
                                         className={`song-item ${currentId === song._id ? 'active' : ''}`}
                                         onClick={() => {
                                             localStorage.setItem('queuePlaylist', JSON.stringify(songs));
                                             localStorage.setItem('currentId', song._id);
                                             window.dispatchEvent(new Event("songChanged"));
-                                        }} >
+                                        }}
+                                    >
                                         <div className="song-itemImg">
                                             <img
                                                 src={song.avatar !== "z" ? song.avatar : 'default_image.jpg'}
@@ -103,23 +111,35 @@ export default function MainMusic() {
                                         <span>
                                             <i className="fa-regular fa-square-caret-right"></i>
                                             <i
-                                                className="fa-solid fa-heart"
+                                                className={`fa-heart ${isLiked(song._id) ? 'fa-solid text-red-500' : 'fa-regular'}`}
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    const likedSongs = JSON.parse(localStorage.getItem('likedSongs')) || [];
-                                                    if (!likedSongs.some(item => item._id === song._id)) {
-                                                        likedSongs.push(song);
-                                                        localStorage.setItem('likedSongs', JSON.stringify(likedSongs));
+                                                    const updatedLikedSongs = [...likedSongs];
+                                                    const index = updatedLikedSongs.findIndex(item => item._id === song._id);
+
+                                                    if (index === -1) {
+                                                        updatedLikedSongs.push(song);
                                                         setLikeMessage('💖 Đã thêm vào yêu thích!');
-                                                        setTimeout(() => setLikeMessage(''), 3000);
+                                                    } else {
+                                                        updatedLikedSongs.splice(index, 1);
+                                                        setLikeMessage('💔 Đã bỏ khỏi yêu thích!');
                                                     }
+
+                                                    setLikedSongs(updatedLikedSongs);
+                                                    localStorage.setItem('likedSongs', JSON.stringify(updatedLikedSongs));
+                                                    setTimeout(() => setLikeMessage(''), 3000);
                                                 }}
+
                                             ></i>
                                             <Link to={`/song/${song._id}`}>
                                                 <i className="fa-solid fa-ellipsis ml-2 musicId"></i>
                                             </Link>
                                         </span>
-                                    </li>
+                                    </li> */}
+
+
+
+                                    <Music item={song} user={user} />
                                 </div>
                             ))
                         )}

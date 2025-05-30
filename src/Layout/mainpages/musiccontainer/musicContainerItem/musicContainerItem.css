@@ -38,19 +38,8 @@
     align-items: center;
 }
 
-.song-detail h2 {
-    font-size: 28px;
-    color: #ffffff;
-    margin-bottom: 8px;
-}
 
-.song-detail p {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 16px;
-}
-
-.song-detail img {
+.song-detail-mainImg {
     width: 200px;
     height: 200px;
     border-radius: 12px;

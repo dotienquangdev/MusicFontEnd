@@ -1,127 +1,39 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import "./overview.css"
-import { loginUsers, loginUserDelete } from "../../services/user";
-import { createSinger } from "../../services/singer";
-import { createPostSong, createSong } from "../../services/song";
-import { createTopic } from "../../services/topic";
-import { deleteUser, deleteUserDelete } from "../../services/user";
-import { deleteSong } from "../../services/song";
-
-import { editSong } from "../../services/song";
+import { loginUsers, loginUserDelete, deleteUser, deleteUserDelete } from "../../services/user";
+import { createSong } from "../../services/song";
 import { editPatchSong } from "../../services/song";
-
 import { message } from 'antd';
+import Music from "./Music";
+import CreateMusic from "./CreateMusic";
 export default function Overview({ title }) {
-
-    const [messageApi, contextHolder] = message.useMessage();
-
-    // Lấy thông tin user từ localStorage
     const user = JSON.parse(localStorage.getItem("user"));
-
-    const [showAddModal, setShowAddModal] = useState(false);
-    const [newSongData, setNewSongData] = useState({
-        title: "",
-        avatar: "",
-        description: "",
-        like: 0,
-        audio: "",
-        lyrics: "",
-        slug: ""
-    });
-
     const userLevel = user?.level || 1;
-    // console.log(user);
-
     const [overview, setOverview] = useState([]);
-    const [overviewSong, setOverviewSong] = useState([]);
     const [overviewDelete, setOverviewDelete] = useState([]);
-
     const [song, setSong] = useState([]);
-    const [singer, setSinger] = useState([]);
-    const [topic, setTopic] = useState([]);
-
     const [editId, setEditId] = useState(null);
     const [editData, setEditData] = useState({
-        title: "",
-        position: 0
+        title: ""
     });
-
-    const handleAddSongSubmit = async () => {
-        try {
-            const result = await createPostSong(newSongData); // giả sử createPostSong là API post
-            if (result && result.data) {
-                alert("Thêm bài hát thành công!");
-                setShowAddModal(false);
-                setNewSongData({
-                    title: "",
-                    avatar: "",
-                    description: "",
-                    like: 0,
-                    audio: "",
-                    lyrics: "",
-                    singerId: "",
-                    topicId: "",
-                    slug: "",
-                    status: "active",   // thêm nếu backend yêu cầu
-                    deleted: false      // thêm nếu backend yêu cầu
-                });
-                const updatedSongs = await createSong();
-                setSong(updatedSongs.song || []);
-            } else {
-                alert("Thêm bài hát thất bại !");
-            }
-        } catch (error) {
-            console.error("Lỗi thêm bài hát:", error);
-            alert("Lỗi khi thêm bài hát!");
-        }
-    };
-
-
-    const handleEditClick = async (id) => {
-        try {
-            const result = await editSong(id);
-            console.log("Kết quả từ editSong:", result);
-
-            if (result && result.data) {
-                setEditData({
-                    title: result.data.title || "",
-                    avatar: result.data.avatar || "",
-                    description: result.data.description || "",
-                    like: result.data.like || 0,
-                    audio: result.data.audio || "",
-                    lyrics: result.data.lyrics || "",
-                    slug: result.data.slug || "",
-                });
-                setEditId(id);
-            } else {
-                alert("Không tìm thấy dữ liệu bài hát");
-            }
-        } catch (error) {
-            console.error("Lỗi lấy dữ liệu bài hát:", error);
-            alert("Lỗi lấy dữ liệu bài hát");
-        }
-    };
-
-
     const handleUpdateSong = async () => {
         try {
             if (!editId || editId === "back") {
                 alert("ID bài hát không hợp lệ.");
                 return;
             }
-
             await editPatchSong(editId, editData);
             alert("Cập nhật thành công");
             setEditId(null); // đóng form
             const result = await createSong();
+            setSong(result.song || []);
+            console.log("Caap nhaat: ", result);
         } catch (error) {
             console.error("Lỗi cập nhật bài hát:", error);
             alert("Cập nhật thất bại");
         }
     };
-
-
     const handleDelete = async (id) => {
         try {
             await deleteUser(id);
@@ -131,30 +43,17 @@ export default function Overview({ title }) {
             console.error("Xóa người dùng thất bại:", error);
             alert("Xóa người dùng thất bại.");
         }
-    };
-    const handleDeleteSong = async (id) => {
-        try {
-            await deleteSong(id);
-            setOverviewSong(prev => prev.filter(song => song._id !== id));
-            alert("Xóa bài hát thành công.");
-        } catch (error) {
-            console.error("Xóa bài hát thất bại:", error);
-            alert("Xóa bài hát thất bại.");
-        }
-    };
-
+    }
     const handleDeleteAll = async (id) => {
         try {
             await deleteUserDelete(id);
             setOverviewDelete(prev => prev.filter(user => user._id !== id));
             alert("Khôi phục người dùng thành công.");
-
         } catch (error) {
             console.error("Khôi phục người dùng thất bại:", error);
             alert("Khôi phục người dùng thất bại.");
         }
     };
-
     useEffect(() => {
         const fetchOverview = async () => {
             const result = await loginUsers();
@@ -164,18 +63,10 @@ export default function Overview({ title }) {
             const result = await loginUserDelete();
             setOverviewDelete(result.user); // tùy theo API trả về 
         };
-
-
-        const fetchSinger = async () => {
-            const result = await createSinger();
-            setSinger(result.singer);
-        }
-
         const fetchSong = async () => {
             try {
                 const result = await createSong();
                 console.log("Kết quả từ createSong:", result);
-
                 if (result && Array.isArray(result.song)) {
                     const validSongs = result.song.filter(
                         item => item && item.title && item.avatar
@@ -190,49 +81,27 @@ export default function Overview({ title }) {
                 setSong([]);
             }
         };
-        const fetchTopic = async () => {
-            const result = await createTopic();
-            setTopic(result.topic);
-        }
-
-        fetchTopic();
-        fetchSinger();
         fetchSong();
         fetchOverview();
         fetchOverviewDelete();
     }, []);
 
     return (
-        <> {contextHolder}
+        <>
             <div className="overviewAll">
                 <Helmet>
                     <title>{title}</title>
                 </Helmet>
 
-                <div className="overview-topic">
-                    <p>Số lượng bài hát: {song.length}</p>
-                    <p>Số lượng chủ đề: {topic.length}</p>
-                    <p>Số lượng ca sỹ: {singer.length}</p>
-                    <p>Số lượng tài khoản: {overview.length}</p>
-                    <p>Số lượng tài khoản đã xóa: {overviewDelete.length}</p>
-                </div>
-
                 <div className="overviewSong">
-                    <h2 className="overviewSong-text">Danh sách bài hát:  {song.length}</h2>
-                    <button onClick={() => setShowAddModal(true)} style={{ margin: "3px" }}> + Thêm mới bài hát</button>
+                    <h2 className="overviewSong-text">Danh sách bài hát: <span style={{ color: "red" }}> {song.length} </span></h2>
+                    <CreateMusic />
                     <ul className="overviewSong-item">
                         {song.length > 0 ? (
                             song.map(item => (
                                 item && item.title && item.avatar ? (
                                     <li key={item._id} className="overviewSongItem-item">
-                                        <img className="overviewSongItem-img" src={item.avatar} alt={item.title} />
-                                        <span className="overviewSongItem-text">{item.title}</span>
-                                        {userLevel === 3 && (
-                                            <span className="overviewSongItem-button">
-                                                <button onClick={() => handleEditClick(item._id)}>Sửa</button>
-                                                <button onClick={() => handleDeleteSong(item._id)}>Xóa</button>
-                                            </span>
-                                        )}
+                                        <Music item={item} user={user} />
                                     </li>
                                 ) : null
                             ))
@@ -242,96 +111,10 @@ export default function Overview({ title }) {
                     </ul>
                 </div>
 
-                {/* Modal sửa bài hát */}
-                {showAddModal && (
-                    <div className="modal-overlay">
-                        <div className="modal-content">
-                            <h3>Thêm bài hát mới</h3>
-
-                            <label htmlFor="title">Tên bài hát</label>
-                            <input
-                                id="title"
-                                type="text"
-                                value={newSongData.title}
-                                onChange={(e) => setNewSongData({ ...newSongData, title: e.target.value })}
-                            />
-
-                            <label htmlFor="avatar">Avatar</label>
-                            <input
-                                id="avatar"
-                                type="text"
-                                value={newSongData.avatar}
-                                onChange={(e) => setNewSongData({ ...newSongData, avatar: e.target.value })}
-                            />
-
-                            <label htmlFor="description">Mô tả</label>
-                            <input
-                                id="description"
-                                type="text"
-                                value={newSongData.description}
-                                onChange={(e) => setNewSongData({ ...newSongData, description: e.target.value })}
-                            />
-
-                            <label htmlFor="singerId">Ca sĩ</label>
-                            <select
-                                id="singerId"
-                                value={newSongData.singerId}
-                                onChange={(e) => setNewSongData({ ...newSongData, singerId: e.target.value })}
-                            >
-                                <option value="">-- Chọn ca sĩ --</option>
-                                {singer.map(s => (
-                                    <option key={s._id} value={s._id}>{s.fullName}</option>
-                                ))}
-                            </select>
-
-                            <label htmlFor="topicId">Chủ đề</label>
-                            <select
-                                id="topicId"
-                                value={newSongData.topicId}
-                                onChange={(e) => setNewSongData({ ...newSongData, topicId: e.target.value })}
-                            >
-                                <option value="">-- Chọn chủ đề --</option>
-                                {topic.map(t => (
-                                    <option key={t._id} value={t._id}>{t.title}</option>
-                                ))}
-                            </select>
-
-                            <label htmlFor="like">Like</label>
-                            <input
-                                id="like"
-                                type="number"
-                                value={newSongData.like}
-                                onChange={(e) => setNewSongData({ ...newSongData, like: Number(e.target.value) })}
-                            />
-
-                            <label htmlFor="audio">Audio</label>
-                            <input
-                                id="audio"
-                                type="text"
-                                value={newSongData.audio}
-                                onChange={(e) => setNewSongData({ ...newSongData, audio: e.target.value })}
-                            />
-
-                            <label htmlFor="lyrics">Lời bài hát</label>
-                            <input
-                                id="lyrics"
-                                type="text"
-                                value={newSongData.lyrics}
-                                onChange={(e) => setNewSongData({ ...newSongData, lyrics: e.target.value })}
-                            />
-
-                            <div className="modal-buttons">
-                                <button onClick={handleAddSongSubmit}>Thêm mới</button>
-                                <button onClick={() => setShowAddModal(false)}>Hủy</button>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
                 {editId && (
                     <div className="modal-overlay">
                         <div className="modal-content">
-                            <h3>Sửa bài hát</h3>
+                            <h5>Sửa bài hát</h5>
 
                             <label htmlFor="title">Tên bài hát</label>
                             <input
@@ -394,7 +177,6 @@ export default function Overview({ title }) {
                         </div>
                     </div>
                 )}
-
 
                 <div className="overview">
                     <h2 className="overviewh2">Danh sách tài khoản người dùng</h2>

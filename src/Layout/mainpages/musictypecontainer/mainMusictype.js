@@ -59,7 +59,7 @@ export default function MainMusictype() {
                                         src={item.avatar}
                                         alt={item.fullName}
                                     />
-                                    <i class="fa-regular fa-square-caret-right singer-itemImgi"></i>
+                                    <i className="fa-regular fa-square-caret-right singer-itemImgi"></i>
                                 </div>
                                 <div className="singer-itemTitle">
                                     <span>{item.fullName}</span>

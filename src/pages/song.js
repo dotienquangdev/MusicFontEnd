@@ -14,25 +14,10 @@ function Song() {
         } else {
             setError('Không có dữ liệu bài hát');
         }
-
-        // fetch('http://localhost:9000/api/song')
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log('Dữ liệu trả về:', data);
-        //         if (data && Array.isArray(data)) {
-        //             setSongs(data);
-        //         } else {
-        //             setError('Không có dữ liệu bài hát');
-        //         }
-        //     })
-        //     .catch(err => {
-        //         console.error('Lỗi khi gọi API:', err);
-        //         setError('Không thể lấy dữ liệu từ server');
-        //     });
     }, []);
 
     return (
-        <div class="song">
+        <div className="song">
             <h2>Danh sách bài hát 12341234</h2>
             {error && <p>{error}</p>}
             <ul>
@@ -50,8 +35,8 @@ function Song() {
                             />
                             <p>{song.title}</p>
                             hi chao cau
-                            <i class="fa-solid fa-heart"></i>
-                            <i class="fa-solid fa-ellipsis ml-2"></i>
+                            <i className="fa-solid fa-heart"></i>
+                            <i className="fa-solid fa-ellipsis ml-2"></i>
                         </li>
                     ))
                 ) : (

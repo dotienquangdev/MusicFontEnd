@@ -81,7 +81,7 @@ export default function MainAbum() {
                                     />
                                 </Link>
                                 <span className="icont-Abum">
-                                    <i class="fa-solid fa-heart icontAbum icontAbum-heart"
+                                    <i className="fa-solid fa-heart icontAbum icontAbum-heart"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             const likeAbums = JSON.parse(localStorage.getItem('likeAbums')) || [];
@@ -93,8 +93,8 @@ export default function MainAbum() {
                                             }
                                         }}
                                     ></i>
-                                    <i class="fa-regular fa-square-caret-right icontAbum icontAbum-caret"></i>
-                                    <i class="fa-solid fa-ellipsis icontAbum icontAbumellipsis"></i>
+                                    <i className="fa-regular fa-square-caret-right icontAbum icontAbum-caret"></i>
+                                    <i className="fa-solid fa-ellipsis icontAbum icontAbumellipsis"></i>
                                 </span>
                             </div>
                             <div className="topic-itemTitle">

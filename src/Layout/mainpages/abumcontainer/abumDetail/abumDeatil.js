@@ -5,12 +5,13 @@ import { Helmet } from "react-helmet-async";
 import { createSong } from '../../../../services/song';
 import { createSinger } from '../../../../services/singer';
 import { createTopicId } from '../../../../services/topic';
+import Music from '../../../../pages/overviews/Music';
 export default function AbumDetail({ title }) {
     const { id } = useParams();
     const [songs, setSongs] = useState([]);
     const [topic, setTopic] = useState(null);
     const [relatedSongs, setRelatedSongs] = useState([]);
-
+    const user = JSON.parse(localStorage.getItem("user"));
     const [currentId, setCurrentId] = useState(() => {
         return localStorage.getItem('currentId') || '';
     });
@@ -89,6 +90,7 @@ export default function AbumDetail({ title }) {
                                         <img src={song.avatar} alt={song.title} />
                                         <span>{song.title}</span>
                                     </Link>
+                                    {/* <Music song={song} user={user} /> */}
                                 </li>
                             ))}
                         </ul>

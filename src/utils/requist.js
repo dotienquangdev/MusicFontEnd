@@ -34,7 +34,7 @@ export const _post = async (path, data) => {
     }
     console.log("Data gửi lên:", data);
 
-    console.log("pathhhhhh: " + API + path);
+    // console.log("pathhhhhh: " + API + path);
 
     const response = await fetch(API + path, options);
     return response;

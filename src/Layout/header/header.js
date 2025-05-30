@@ -13,17 +13,13 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false); // Trạng thái menu người dùng
 
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
     }, [theme]);
-
     const toggleTheme = () => {
         setTheme(prev => (prev === "dark" ? "light" : "dark"));
     };
-
-
     // Hàm loại bỏ dấu tiếng Việt
     function removeVietnameseTones(str) {
         return str.normalize("NFD")
@@ -31,16 +27,13 @@ export default function Header() {
             .replace(/đ/g, "d")
             .replace(/Đ/g, "D");
     }
-
     // Hàm xử lý thay đổi trong ô tìm kiếm
     const handleSearchChange = (event) => {
         const query = event.target.value;
         setSearchTerm(query);
-
         if (debounceTimeout) {
             clearTimeout(debounceTimeout);
         }
-
         const timeout = setTimeout(() => {
             if (query.length >= 2) {
                 fetchSongs(query);
@@ -49,19 +42,15 @@ export default function Header() {
                 setNoResult(false);
             }
         }, 300);
-
         setDebounceTimeout(timeout);
     };
-
     // Hàm gọi API và lọc kết quả
     const fetchSongs = async (query) => {
         setLoading(true);
         try {
             const response = await createSong();
             const songs = response.song || [];
-
             const keywords = removeVietnameseTones(query.toLowerCase()).split(/\s+/);
-
             const filteredSongs = songs.filter(song => {
                 const title = removeVietnameseTones(song.title?.toLowerCase() || "");
                 const slug = song.slug?.toLowerCase() || "";
@@ -69,7 +58,6 @@ export default function Header() {
                     title.includes(word) || slug.includes(word)
                 );
             });
-
             setSongResults(filteredSongs);
             setNoResult(filteredSongs.length === 0);
         } catch (error) {
@@ -80,7 +68,6 @@ export default function Header() {
             setLoading(false);
         }
     };
-
     // Kiểm tra người dùng đăng nhập từ localStorage
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("user"));
@@ -88,23 +75,16 @@ export default function Header() {
             setUser(userData); // Lưu thông tin người dùng vào state
         }
     }, []);
-
     // Hàm toggle mở/đóng menu người dùng
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
     // Hàm đăng xuất
     const handleLogout = () => {
         localStorage.removeItem("user"); // Xóa thông tin người dùng khỏi localStorage
         setUser(null); // Cập nhật lại state user là null
         setIsMenuOpen(false); // Đóng menu
     };
-
-
-
-
-
 
     return (
         <div className="headers">

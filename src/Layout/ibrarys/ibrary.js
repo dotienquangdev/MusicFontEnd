@@ -3,7 +3,9 @@ import "./ibrary.css";
 import { createSong } from "../../services/song";
 import { createTopic } from "../../services/topic";
 import { Link } from 'react-router-dom';
+import Music from "../../pages/overviews/Music";
 export default function Ibeary() {
+    const user = JSON.parse(localStorage.getItem("user"));
     const [song, setSong] = useState([]);
     const [likedSongs, setLikedSongs] = useState([]);
 
@@ -101,7 +103,7 @@ export default function Ibeary() {
                         likedSingers.map(singer => (
                             <li key={singer._id} className="ibearySinger">
                                 <img className="ibearySinger-img" src={singer.avatar} alt={singer.fullName} />
-                                <i class="fa-regular fa-square-caret-right ibearySingeri"></i>
+                                <i className="fa-regular fa-square-caret-right ibearySingeri"></i>
                                 <div className="ibearySinger-info">
                                     <p>{singer.fullName}</p>
                                 </div>
@@ -117,7 +119,9 @@ export default function Ibeary() {
                 </ul>
             </div>
 
-            <h3 className="ibeary-h1">Abum</h3>
+            <h3 className="ibeary-h1">Abum
+
+            </h3>
             <ul className="ibearyAbum">
                 {likeAbums.length === 0 ? (
                     <p>Abum yêu thích rỗng.</p>
@@ -163,7 +167,7 @@ export default function Ibeary() {
                             }}
                             className="ibeary"
                         >
-                            <img className="ibeary-img" src={song.avatar !== "z" ? song.avatar : 'default_image.jpg'} alt={song.title} />
+                            {/* <img className="ibeary-img" src={song.avatar !== "z" ? song.avatar : 'default_image.jpg'} alt={song.title} />
                             <div className="Ibeary-info">
                                 <p>{song.title}</p>
                                 <p>{song.singerName}</p>
@@ -173,7 +177,9 @@ export default function Ibeary() {
                                 className="fa-solid fa-heart remove-heart Ibeary-icon"
                                 title="Bỏ yêu thích"
                                 onClick={() => removeFromLiked(song._id)}
-                            ></i>
+                            ></i> */}
+
+                            <Music item={song} user={user} />
                         </li>
                     ))
                 )}

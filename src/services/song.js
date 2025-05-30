@@ -1,5 +1,5 @@
 import { get, _get, _delete, _patch, _post } from "../utils/requist";
-import axios from "axios";
+// import axios from "axios";
 
 export const createSong = async (data) => {
     const response = await _get(`/song`, data);
@@ -60,9 +60,10 @@ const editPatchSong = async (id, data) => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
+        console.log(result)
         return result;
     } catch (error) {
-        console.error("Lỗi khi gọi editPatchSong:", error);
+        // console.error("Lỗi khi gọi editPatchSong:", error);
         return null;
     }
 };
