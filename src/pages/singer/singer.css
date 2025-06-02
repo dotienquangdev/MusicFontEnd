@@ -1,0 +1,124 @@
+.singer {
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin: 0 auto;
+}
+
+.singer>span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.singer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.singer-item {
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.singer-item:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.singer-itemImg {
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+}
+
+.singer-itemImg img {
+    /* position: absolute; */
+    width: 150px;
+    height: 150px;
+    display: block;
+    transition: transform 1s ease, filter 1s ease;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.singer-itemImgi {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    /* không gây cản trở khi click ảnh */
+
+}
+
+.singer-itemImg:hover .singer-itemImgi {
+    opacity: 1;
+}
+
+.singer-itemImg img:hover {
+    transform: scale(1.08);
+    filter: brightness(120%);
+}
+
+.singer-itemTitle span {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+/* Tăng giảm âm lượng */
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.volume-control input[type="range"] {
+    width: 100px;
+}
+
+.singer-care {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.singer-care-true {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    border-radius: 20px;
+    width: 120px;
+    height: 30px;
+}
+
+.singer-care-false {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 20px;
+    width: 120px;
+    height: 30px;
+}

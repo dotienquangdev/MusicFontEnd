@@ -4,18 +4,6 @@
     font-weight: bold;
 }
 
-.ibeary {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-radius: 10px;
-    /* border-bottom: 1px solid #eee; */
-    transition: background-color 0.2s ease;
-    margin: 3px;
-    cursor: pointer;
-    position: relative;
-
-}
 
 .ibeary:hover {
     background-color: #2f2739;
@@ -123,6 +111,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.ibearyAbum-info {
+    margin-top: 10px;
+    margin-left: 80px;
+}
+
+.ibearyAbum-info:hover {
+    color: rgb(86, 86, 86);
 }
 
 .ibearySinger-care {

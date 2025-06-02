@@ -46,6 +46,10 @@
     overflow-y: auto;
 }
 
+.song-itemDetail {
+    width: 300px;
+}
+
 /* Danh sách bài hát - cải thiện thanh cuộn */
 .topic-detail-item ul {
     display: flex;
@@ -59,8 +63,6 @@
 
 
 .songItem-detail {
-    width: 200px;
-    height: 80px;
     display: flex;
     color: #ffffff;
     left: 10px;
@@ -75,16 +77,6 @@
     width: 6px;
 }
 
-.topic-detail-item ul::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 10px;
-}
-
-.topic-detail-item ul::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-}
-
-
 /* Styling từng bài hát */
 .topic-detail-item ul li {
     display: flex;
@@ -94,20 +86,4 @@
     padding: 10px;
     border-radius: 12px;
     transition: background-color 0.3s;
-}
-
-.topic-detail-item ul li:hover {
-    background: #444;
-}
-
-.topic-detail-item ul li img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.topic-detail-item ul li span {
-    font-size: 18px;
-    color: #fff;
 }

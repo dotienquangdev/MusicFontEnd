@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createTopic } from "../../../services/topic";
+import "./mainSinger.css";
 
 export default function MainSinger() {
     const [topic, setTopic] = useState([]);
@@ -14,14 +15,14 @@ export default function MainSinger() {
     // console.log(topic);
 
     return (
-        <>
+        <div className="mainSinger">
             <h2>Thể loại</h2>
             {topic.length > 0 ? (
                 <ul>
                     {topic.map((item) => (
-                        <li key={item._id}> {/* Đảm bảo item._id là duy nhất */}
-                            <img src={item.avatar} alt={item.title} width={50} height={50} /> {/* Hiển thị avatar */}
-                            <div>
+                        <li key={item._id} className="mainSinger-item">
+                            <img className="mainSingerImg" src={item.avatar} alt={item.title} width={50} height={50} /> {/* Hiển thị avatar */}
+                            <div className="mainSingerText">
                                 <strong>{item.title}</strong>
                                 <p>{item.description}</p>
                             </div>
@@ -31,6 +32,6 @@ export default function MainSinger() {
             ) : (
                 <h1>Lỗi da ta</h1>
             )}
-        </>
+        </div>
     );
 }

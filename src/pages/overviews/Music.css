@@ -1,8 +1,8 @@
 .musicIcon {
     color: rgb(255, 255, 255);
     /* margin: 5px; */
-    padding: 5px;
-    font-size: 18px;
+    padding: 2px;
+    /* font-size: 18px; */
 }
 
 .musicFile-img {
@@ -12,7 +12,16 @@
     border-radius: 10px;
 }
 
+.musicFile-icontAdd {
+    color: red;
+}
+
+.musicFile-icontClear {
+    color: blue;
+}
+
 .musicFile {
+    border: 1px solid rgb(33, 33, 33);
     position: relative;
     margin: 5px;
     width: 330px;
@@ -67,6 +76,7 @@
 .musicFile-text {
     width: 150px;
     margin-left: 5px;
+    color: #fff;
 
 }
 

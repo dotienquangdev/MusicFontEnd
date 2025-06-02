@@ -134,13 +134,14 @@
 
     .menu-logo-img {
         content: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm_h5hCCB0LIBJW8vliz-FbxiJbc9B_pO2fA&s");
-        width: 45px;
+        width: 40px;
         height: 30px;
-        margin: 5px;
+        margin: 2px;
+        border-radius: 20px;
     }
 
     #menu {
-        width: 50px;
+        width: 45px;
         padding: 16px 0;
     }
 

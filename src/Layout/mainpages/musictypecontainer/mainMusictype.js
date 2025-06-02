@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./mainMusictype.css";
 import { Link } from 'react-router-dom';
 import { createSinger } from '../../../services/singer';
+import Singer from '../../../pages/singer/singer';
 
 export default function MainMusictype() {
     const [singer, setSingers] = useState([]);
@@ -53,7 +54,7 @@ export default function MainMusictype() {
                 {singer.length > 0 ? (
                     singer.slice(0, 5).map(item => (
                         <li key={item._id} className="singer-item">
-                            <Link to={`/singer/${item._id}`}>
+                            {/* <Link to={`/singer/${item._id}`}>
                                 <div className="singer-itemImg">
                                     <img
                                         src={item.avatar}
@@ -83,9 +84,8 @@ export default function MainMusictype() {
                             >
 
                                 {likedSingers.find(i => i._id === item._id) ? "Bỏ Quan Tâm" : "Quan Tâm"}
-                            </div>
-
-
+                            </div> */}
+                            <Singer item={item} />
                         </li>
                     ))
                 ) : (

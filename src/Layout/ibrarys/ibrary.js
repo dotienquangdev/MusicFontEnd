@@ -4,6 +4,8 @@ import { createSong } from "../../services/song";
 import { createTopic } from "../../services/topic";
 import { Link } from 'react-router-dom';
 import Music from "../../pages/overviews/Music";
+import Abum from "../../pages/abum/abum";
+import Singer from "../../pages/singer/singer";
 export default function Ibeary() {
     const user = JSON.parse(localStorage.getItem("user"));
     const [song, setSong] = useState([]);
@@ -88,10 +90,6 @@ export default function Ibeary() {
             window.removeEventListener('songChanged', handleSongChanged);
         };
     }, []);
-    // console.log("likedSongs", likedSongs);
-    // console.log("likedSingers", likedSingers);
-    // console.log("abumm", likeAbums);
-
     return (
         <>
             <div className="ibearySinger-All">
@@ -102,17 +100,7 @@ export default function Ibeary() {
                     ) : (
                         likedSingers.map(singer => (
                             <li key={singer._id} className="ibearySinger">
-                                <img className="ibearySinger-img" src={singer.avatar} alt={singer.fullName} />
-                                <i className="fa-regular fa-square-caret-right ibearySingeri"></i>
-                                <div className="ibearySinger-info">
-                                    <p>{singer.fullName}</p>
-                                </div>
-                                <div
-                                    className="ibearySinger-care"
-                                    onClick={() => removeFromLikedSinger(singer._id)}
-                                    title="Bỏ quan tâm" >
-                                    Bỏ quan tâm
-                                </div>
+                                <Singer item={singer} />
                             </li>
                         ))
                     )}
@@ -136,11 +124,8 @@ export default function Ibeary() {
                             }}
                             className="ibearyAbum-item"
                         >
-                            <Link to={`/topic/${topic._id}`} key={topic._id}>
-                                <img className="ibearyAbum-img" src={topic.avatar !== "z" ? topic.avatar : 'default_image.jpg'} alt={topic.title} />
-                            </Link>
+                            <Abum item={topic} />
                             <div className="ibearyAbum-info">
-                                <p>{topic.title}</p>
                                 <i
                                     className="fa-solid fa-heart removeAbum-heart ibearyAbum-icon"
                                     title="Bỏ yêu thích"
@@ -167,17 +152,7 @@ export default function Ibeary() {
                             }}
                             className="ibeary"
                         >
-                            {/* <img className="ibeary-img" src={song.avatar !== "z" ? song.avatar : 'default_image.jpg'} alt={song.title} />
-                            <div className="Ibeary-info">
-                                <p>{song.title}</p>
-                                <p>{song.singerName}</p>
-                                <p>{song.like} like</p>
-                            </div>
-                            <i
-                                className="fa-solid fa-heart remove-heart Ibeary-icon"
-                                title="Bỏ yêu thích"
-                                onClick={() => removeFromLiked(song._id)}
-                            ></i> */}
+
 
                             <Music item={song} user={user} />
                         </li>

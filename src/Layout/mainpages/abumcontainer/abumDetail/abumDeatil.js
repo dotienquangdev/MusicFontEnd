@@ -79,7 +79,7 @@ export default function AbumDetail({ title }) {
                         <ul>
                             {relatedSongs.map(song => (
                                 <li key={song._id}
-                                    className={`song-item ${currentId === song._id ? 'active' : ''}`}
+                                    className={`song-itemDetail ${currentId === song._id ? 'active' : ''}`}
                                     onClick={() => {
                                         localStorage.setItem('queuePlaylist', JSON.stringify(relatedSongs));
                                         localStorage.setItem('currentId', song._id);
@@ -87,10 +87,8 @@ export default function AbumDetail({ title }) {
                                     }}
                                 >
                                     <Link className='songItem-detail' to={`/song/${song._id}`}>
-                                        <img src={song.avatar} alt={song.title} />
-                                        <span>{song.title}</span>
+                                        <Music item={song} user={user} />
                                     </Link>
-                                    {/* <Music song={song} user={user} /> */}
                                 </li>
                             ))}
                         </ul>

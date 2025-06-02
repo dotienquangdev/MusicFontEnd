@@ -5,10 +5,9 @@ import "./Music.css";
 import { Link } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import { createSinger } from "../../services/singer";
-
 export default function Music({ item, user }) {
     // console.log(item);
-    const [showOptions, setShowOptions] = useState(false);
+    const [optionsId, setOptionsId] = useState(null);
     const [currentId, setCurrentId] = useState(() => {
         return localStorage.getItem('currentId') || '';
     });
@@ -22,6 +21,11 @@ export default function Music({ item, user }) {
     const [overviewSong, setOverviewSong] = useState([]);
     const userLevel = user?.level || 1;
     const [loading, setLoading] = useState(true);
+    const [likedSongs, setLikedSongs] = useState(() => {
+        return JSON.parse(localStorage.getItem('likedSongs')) || [];
+    });
+    const isLiked = (songId) => likedSongs.some(items => items._id === songId);
+
     useEffect(() => {
         const handleSongChanged = () => {
             const id = localStorage.getItem('currentId');
@@ -95,61 +99,78 @@ export default function Music({ item, user }) {
         }
     };
     return (
-        <div
-            // className="musicFile"
-            className={`musicFile  ${currentId === item._id ? 'active' : ''}`}
-            onClick={() => {
-                localStorage.setItem('queuePlaylist', JSON.stringify(songs));
-                localStorage.setItem('currentId', item._id);
-                window.dispatchEvent(new Event("songChanged"));
-            }}
-        >
-            <div className="musicFileImg">
-                <img className="musicFile-img" src={item.avatar} alt={item.title} />
-                <i className="fa-regular fa-square-caret-right musicFileImg-icon"></i>
-            </div>
-            <span className="musicFile-text">
-                <p className="musicFile-textTitle">{item.title}</p>
-                <p className="musicFile-textSingerName">{item.singerName}</p>
-            </span>
-            <div className="musicFile-icon">
-                <i className="fa-regular fa-square-caret-right musicIcon musicIconCaret"></i>
-                <i
-                    className="fa-solid fa-heart musicIcon musicIconHeart"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        const likedSongs = JSON.parse(localStorage.getItem('likedSongs')) || [];
-                        if (!likedSongs.some(item => item._id === item._id)) {
-                            likedSongs.push(item);
-                            localStorage.setItem('likedSongs', JSON.stringify(likedSongs));
-                            setLikeMessage('💖 Đã thêm vào yêu thích!');
-                            setTimeout(() => setLikeMessage(''), 3000);
+        <>
+            {likeMessage && (
+                <div className="like-toast">{likeMessage}</div>
+            )}
+            <div
+                className={`musicFile  ${currentId === item._id ? 'active' : ''}`}
+                onClick={() => {
+                    localStorage.setItem('queuePlaylist', JSON.stringify(songs));
+                    localStorage.setItem('currentId', item._id);
+                    window.dispatchEvent(new Event("songChanged"));
+                }}
+            >
+                <div className="musicFileImg">
+                    <img className="musicFile-img" src={item.avatar} alt={item.title} />
+                    <i className="fa-regular fa-square-caret-right musicFileImg-icon"></i>
+                </div>
+                <span className="musicFile-text">
+                    <p className="musicFile-textTitle">{item.title}</p>
+                    <p className="musicFile-textSingerName">{item.singerName}</p>
+                </span>
+                <div className="musicFile-icon">
+                    <i className="fa-regular fa-square-caret-right musicIcon musicIconCaret"></i>
+                    <i
+                        style={{
+                            margin: "3px"
+                        }}
+                        className={`fa-heart ${isLiked(item._id) ? 'fa-solid text-red-500 musicFile-icontAdd' : 'fa-regular musicFile-icontClear'}`
                         }
-                    }}
-                ></i>
-                <i
-                    className="fa-solid fa-ellipsis ml-2 musicId musicIcon musicIconEllipsis"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setShowOptions(prev => !prev);
-                    }}
-                ></i>
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            const updatedLikedSongs = [...likedSongs];
+                            const index = updatedLikedSongs.findIndex(items => items._id === item._id);
+
+                            if (index === -1) {
+                                const fullSong = songs.find(songMusic => songMusic._id === item._id);
+                                if (fullSong) {
+                                    updatedLikedSongs.push(fullSong);
+                                    setLikeMessage('💖 Đã thêm vào yêu thích!');
+                                }
+                            } else {
+                                updatedLikedSongs.splice(index, 1);
+                                setLikeMessage('💔 Đã bỏ khỏi yêu thích!');
+                            }
+                            setLikedSongs(updatedLikedSongs);
+                            localStorage.setItem('likedSongs', JSON.stringify(updatedLikedSongs));
+                            setTimeout(() => setLikeMessage(''), 2000);
+                        }}
+                    ></i>
+                    <i
+                        className="fa-solid fa-ellipsis ml-2 musicId musicIcon musicIconEllipsis"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setOptionsId(prev => (prev === item._id ? null : item._id));
+                        }}
+                    ></i>
+
+                </div>
+                <span className="musicFile-button">
+                    <Link to={`/song/${item._id}`}>
+                        <button className="musicFile-buttonEdit">...</button>
+                    </Link>
+
+                    {userLevel === 3 && optionsId === item._id &&
+                        (location.pathname === "/overview" || location.pathname === "/library") && (
+                            <>
+                                <button className="musicFile-buttonEdit" onClick={() => handleEditClick(item._id)}>Sửa</button>
+                                <button className="musicFile-buttonDelete" onClick={() => handleDeleteSong(item._id)}>Xóa</button>
+                            </>
+                        )}
+                </span>
 
             </div>
-            <span className="musicFile-button">
-                <Link to={`/song/${item._id}`}>
-                    <button className="musicFile-buttonEdit">...</button>
-                </Link>
-
-                {userLevel === 3 && showOptions &&
-                    (location.pathname === "/overview" || location.pathname === "/library") && (
-                        <>
-                            <button className="musicFile-buttonEdit" onClick={() => handleEditClick(item._id)}>Sửa</button>
-                            <button className="musicFile-buttonDelete" onClick={() => handleDeleteSong(item._id)}>Xóa</button>
-                        </>
-                    )}
-            </span>
-
-        </div>
+        </>
     )
 }

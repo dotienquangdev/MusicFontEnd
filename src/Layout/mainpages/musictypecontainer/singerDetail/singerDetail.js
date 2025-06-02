@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
 import { createSinger } from "../../../../services/singer";
 import { createSong } from "../../../../services/song";
+import Music from "../../../../pages/overviews/Music";
 
 export default function SingerDetail({ title }) {
     const { id } = useParams();
@@ -124,8 +125,7 @@ export default function SingerDetail({ title }) {
                                                 }}
                                             >
                                                 <Link className='singerDetaileSong-detail' to={`/song/${song._id}`}>
-                                                    <img src={song.avatar} alt={song.title} />
-                                                    <span>{song.title}</span>
+                                                    <Music item={song} />
                                                 </Link>
                                             </li>
                                         ))}
