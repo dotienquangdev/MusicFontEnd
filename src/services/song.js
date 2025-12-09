@@ -1,6 +1,12 @@
 import { get, _get, _delete, _patch, _post } from "../utils/requist";
 // import axios from "axios";
 
+export const create = async () => {
+    const response = await _get(`/`);
+    const result = await response.json();
+    return result;
+}
+
 export const createSong = async (data) => {
     const response = await _get(`/song`, data);
     const result = await response.json();

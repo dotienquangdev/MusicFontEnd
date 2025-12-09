@@ -11,7 +11,7 @@ export default function Login({ title }) {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
-    const { showSuccessMessage } = useAuth();  // Lấy function showSuccessMessage từ context
+    const { showSuccessMessage } = useAuth(); 
 
     const navigate = useNavigate();
 

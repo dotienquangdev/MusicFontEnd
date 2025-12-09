@@ -1,133 +1,197 @@
-.ibeary-h1 {
-    margin-top: 20px;
-    color: #ffffff;
-    font-weight: bold;
+/* ========== ROOT THEME ========== */
+.ibeary-root {
+  --bg: #0d0d12;
+  --card: #1a1b22;
+  --muted: #9ea3ad;
+  --text: #f4f4f6;
+  --accent: #8f5bff;
+  --accent-hover: #a87cff;
+  --radius: 14px;
+  --gap: 16px;
+
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text);
 }
 
-
-.ibeary:hover {
-    background-color: #2f2739;
+/* ========== HEADERS ========== */
+.ibeary-h1,
+.ibearySinger-h1 {
+  font-size: 1.15rem;
+  margin: 22px 0 14px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.3px;
 }
 
-.ibeary-img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 16px;
+/* ========== GENERIC CARD ========== */
+.ibeary,
+.ibearyAbum-item,
+.ibearySinger {
+  background: linear-gradient(145deg, #191a20, #13141a);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  transition: 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.Ibeary-info {
-    flex: 1;
+.ibeary:hover,
+.ibearyAbum-item:hover,
+.ibearySinger:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(145deg, #20212a, #15151c);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-.Ibeary-info p {
-    margin: 4px 0;
-    color: #444;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.Ibeary-info p:last-child {
-    color: #888;
-    font-size: 14px;
-}
-
-.Ibeary-icon {
-    color: #e74c3c;
-    font-size: 20px;
-    margin-left: 12px;
-    transition: transform 0.2s ease;
-}
-
-.Ibeary-icon:hover {
-    transform: scale(1.2);
-    color: #c0392b;
-}
-
-.remove-heart {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.ibearySinger-All {
-    width: 100%;
-}
-
-.ibearySinger-All-ul {
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    flex-wrap: wrap;
+/* ========== IMAGE STYLE ========== */
+.ibeary-img,
+.ibearySinger-img {
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .ibearySinger-img {
-    width: 150px;
-    transition: transform 1s ease, filter 1s ease;
-
-    border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
-.ibearySinger-img:hover {
-    transform: scale(1.08);
-    filter: brightness(120%);
+/* ========== TEXT ========== */
+.Ibeary-info,
+.ibearySinger-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.Ibeary-info p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.Ibeary-info p:last-child {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ========== HEART / ICON ========== */
+.Ibeary-icon,
+.ibearyAbum-icon {
+  font-size: 20px;
+  color: var(--accent);
+  cursor: pointer;
+  transition: 0.22s ease;
+}
+
+.Ibeary-icon:hover,
+.ibearyAbum-icon:hover {
+  color: var(--accent-hover);
+  transform: scale(1.15);
+}
+
+/* ========== SINGER LIST ========== */
+.ibearySinger-All-ul {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  list-style: none;
 }
 
 .ibearySinger {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
+  width: 240px;
+  flex-direction: column;
+  text-align: center;
+  padding: 18px;
+  position: relative;
 }
 
 .ibearySingeri {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: -35px;
-    font-size: 35px;
-    color: rgb(255, 255, 255);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 38px;
+  opacity: 0;
+  transition: 0.3s;
 }
 
 .ibearySinger:hover .ibearySingeri {
-    opacity: 1;
+  opacity: 1;
 }
 
-.ibearySinger-info {
-    width: 200px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* ========== ABUM GRID ========== */
+.ibearyAbum {
+  list-style: none;
+  padding: 0;
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
-.ibearyAbum-info {
-    margin-top: 10px;
-    margin-left: 80px;
+.ibearyAbum-item {
+  flex-direction: column;
+  padding: 16px;
 }
 
-.ibearyAbum-info:hover {
-    color: rgb(86, 86, 86);
+/* ========== TABS ========== */
+.ibeary-tabs button {
+  background: #14141a;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
 }
 
-.ibearySinger-care {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: blueviolet;
-    border-radius: 20px;
-    width: 150px;
-    height: 30px;
+.ibeary-tabs button.active {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+}
+
+.ibeary-tabs button:hover {
+  background: #1f1f28;
+}
+
+/* ========== LIKE LIST ========== */
+.ibeary {
+  width: 100%;
+  padding: 12px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1000px) {
+  .ibearyAbum {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .ibearySinger {
+    width: 48%;
+  }
+  .ibearySinger-img {
+    width: 120px;
+    height: 120px;
+  }
+  .ibeary-img {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+@media (max-width: 420px) {
+  .ibearySinger {
+    width: 100%;
+  }
+  .ibearyAbum {
+    grid-template-columns: 1fr;
+  }
 }

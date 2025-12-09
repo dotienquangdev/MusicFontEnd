@@ -17,14 +17,9 @@ export default function SongDetail({ title }) {
 
     useEffect(() => {
         const fetchSongAndRelated = async () => {
-            try {
-                // const res = await fetch(`http://localhost:9000/api/song/${id}`);
-                // const res = await fetch(createSongId);
+            try { 
                 const data = await createSongId(id)
-                setSong(data);
-                // Lấy tên ca sĩ
-                // const singerRes = await fetch(`http://localhost:9000/api/singer`);
-                // const singerData = await singerRes.json(); 
+                setSong(data); 
                 const singerData = await createSinger();
                 const singer = singerData.singer.find(s => s._id === data.singerId);
                 // console.log(singerData)
@@ -32,14 +27,8 @@ export default function SongDetail({ title }) {
                 setSingerName(singer ? singer.fullName : 'Không rõ');
 
                 // Lấy các bài hát cùng chủ đề
-                if (data.topicId) {
-                    // const relatedRes = await fetch(`http://localhost:9000/api/song?topicId=${data.topicId}`);
-                    // const relatedData = await relatedRes.json();
-                    const relatedData = await createSongTopicId(data.topicId);
-                    // console.log(relatedRes)
-                    // console.log(relatedData)
-                    // console.log(singerData)
-                    // const relatedRes = await fetch(createSongTopicId);
+                if (data.topicId) { 
+                    const relatedData = await createSongTopicId(data.topicId); 
                     setRelatedSongs(relatedData.song.filter(s => s._id !== id));
                 }
             } catch (err) {
@@ -74,11 +63,7 @@ export default function SongDetail({ title }) {
                     <h3 className="song-detail-mai-List_h3">Các bài hát cùng chủ đề</h3>
                     <ul className="song-detail-mai-List_ul">
                         {relatedSongs.map(item => (
-                            <li className="song-detail-mai-text-item" key={item._id}>
-                                {/* <Link to={`/song/${item._id}`}>
-                                    <img src={item.avatar} alt={item.title} />
-                                    <span>{item.title}</span>
-                                </Link> */}
+                            <li className="song-detail-mai-text-item" key={item._id}> 
                                 <Music item={item} user={user} />
                             </li>
                         ))}

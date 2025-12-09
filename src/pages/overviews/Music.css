@@ -1,167 +1,160 @@
 .musicIcon {
-    color: rgb(255, 255, 255);
-    /* margin: 5px; */
-    padding: 2px;
-    /* font-size: 18px; */
+  color: rgb(255, 255, 255);
+  padding: 2px;
 }
 
 .musicFile-img {
-    width: 45px;
-    height: 45px;
-    transition: transform 1s ease, filter 1s ease;
-    border-radius: 10px;
+  width: 45px;
+  height: 45px;
+  transition: transform 1s ease, filter 1s ease;
+  border-radius: 10px;
 }
 
 .musicFile-icontAdd {
-    color: red;
+  color: red;
 }
 
 .musicFile-icontClear {
-    color: blue;
+  color: blue;
 }
 
 .musicFile {
-    border: 1px solid rgb(33, 33, 33);
-    position: relative;
-    margin: 5px;
-    width: 330px;
-    height: 75px;
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    overflow: hidden;
+  border: 1px solid rgb(33, 33, 33);
+  position: relative;
+  margin: 5px;
+  width: 330px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .musicFile:hover {
-    background-color: #2f2739;
+  background-color: #2f2739;
 }
 
 .musicFile-img:hover {
-    transform: scale(1.08);
-    filter: brightness(85%);
+  transform: scale(1.08);
+  filter: brightness(85%);
 }
 
-.musicFile-button {}
+.musicFile-button {
+}
 
 .musicFileImg {
-    position: relative;
+  position: relative;
 }
 
 .musicFileImg img {
-    margin-left: 10px;
-    width: 45px;
-    height: 45px;
-    transition: transform 1s ease, filter 1s ease;
-    border-radius: 10px;
+  margin-left: 10px;
+  width: 45px;
+  height: 45px;
+  transition: transform 1s ease, filter 1s ease;
+  border-radius: 10px;
 }
 
 .musicFileImg-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    /* không gây cản trở khi click ảnh */
-
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  /* không gây cản trở khi click ảnh */
 }
 
 .musicFileImg:hover .musicFileImg-icon {
-    opacity: 1;
+  opacity: 1;
 }
 
 .musicFile-text {
-    width: 150px;
-    margin-left: 5px;
-    color: #fff;
-
+  width: 150px;
+  margin-left: 5px;
+  color: #fff;
 }
 
 .musicFile-textTitle {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .musicFile-textTitle:hover {
-    color: #c273ed;
+  color: #c273ed;
 }
 
 .musicFile-textSingerName {
-    color: #bfbfbf;
-    font-size: 12px;
+  color: #bfbfbf;
+  font-size: 12px;
 }
 
 .musicFile-textSingerName:hover {
-    color: #c273ed;
-    border-bottom: 1px solid #c273ed;
+  color: #c273ed;
+  border-bottom: 1px solid #c273ed;
 }
 
 .musicIconCaret:hover {
-    color: #8e46cd;
+  color: #8e46cd;
 }
 
 .musicIconHeart:hover {
-    color: red;
+  color: red;
 }
 
-
 .musicIconEllipsis {
-    padding: 10px;
+  padding: 10px;
 }
 
 .musicIconEllipsis:hover {
-    background-color: #413a4a;
-    border-radius: 50%;
+  background-color: #413a4a;
+  border-radius: 50%;
 }
 
 .musicFile-icon {
-    /* margin-left: 30px; */
-    opacity: 0;
-    display: flex;
+  /* margin-left: 30px; */
+  opacity: 0;
+  display: flex;
 }
 
 .musicFile:hover .musicFile-icon {
-    opacity: 1;
-    /* gap: 10px; */
+  opacity: 1;
+  /* gap: 10px; */
 }
 
-
-
 .musicFile-button {
-    width: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  width: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .musicFile-button button {
-    width: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  width: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-
 .musicFile-buttonEdit {
-    margin: 2px;
-    border-radius: 3px;
-    border: none;
-    margin-left: 10px;
+  margin: 2px;
+  border-radius: 3px;
+  border: none;
+  margin-left: 10px;
 }
 
 .musicFile-buttonEdit:hover {
-    background-color: #d7a9ff;
+  background-color: #d7a9ff;
 }
 
 .musicFile-buttonDelete {
-    margin: 2px;
-    border-radius: 3px;
-    border: none;
+  margin: 2px;
+  border-radius: 3px;
+  border: none;
 }
 
 .musicFile-buttonDelete:hover {
-    background-color: #ff0a0a;
+  background-color: #ff0a0a;
 }

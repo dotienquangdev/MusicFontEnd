@@ -1,179 +1,174 @@
 .song-itemSkeleton {
-    border: 1px solid rgb(201, 201, 201);
-    background: #313131;
-    display: flex;
+  border: 1px solid rgb(201, 201, 201);
+  background: #313131;
+  display: flex;
 }
 
 .song-itemSkeletonText,
 .song-itemSkeletonImg {
-    width: 20px;
-    height: 20px;
-    background-color: #ffffff;
-    border: 1px solid #fff;
-    margin: 5px;
-    border-radius: 15px;
-
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border: 1px solid #fff;
+  margin: 5px;
+  border-radius: 15px;
 }
 
 .song-itemSkeletonIcon {
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 
-    background-color: aqua;
-    border: 1px solid #fff;
+  background-color: aqua;
+  border: 1px solid #fff;
 }
 
 ul li {
-    list-style: none;
+  list-style: none;
 }
 
 .song {
-    width: 100%;
-    height: 100%;
-    color: #fff;
+  width: 100%;
+  height: 100%;
+  color: #fff;
 }
 
 .song ul {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .song-item .song-itemImg {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .song-item p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .song-itemText {
-    width: 150px;
+  width: 150px;
 }
 
 .song-item:hover span {
-    display: flex;
+  display: flex;
 }
 
 .song-item .song-itemImg img {
-    width: 45px;
-    height: 45px;
-    transition: transform 1s ease, filter 1s ease;
-    border-radius: 10px;
+  width: 45px;
+  height: 45px;
+  transition: transform 1s ease, filter 1s ease;
+  border-radius: 10px;
 }
 
 .song-item .song-itemImg img:hover {
-
-    transform: scale(1.08);
-    filter: brightness(85%);
+  transform: scale(1.08);
+  filter: brightness(85%);
 }
 
 .song-item:hover {
-    background-color: #2f2739;
+  background-color: #2f2739;
 }
 
 .song-item {
-    position: relative;
-    margin: 5px;
-    width: 330px;
-    height: 75px;
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    overflow: hidden;
+  position: relative;
+  margin: 5px;
+  width: 330px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .song-item span {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: none;
-    margin-top: 15px;
-    background-color: transparent;
-    height: auto;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  margin-top: 15px;
+  background-color: transparent;
+  height: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .song-item:hover span {
-    display: flex;
+  display: flex;
 }
 
 .song-item span i {
-    padding: 5px;
-    font-size: 20px;
-    color: #fff;
+  padding: 5px;
+  font-size: 20px;
+  color: #fff;
 }
 
 .song-item span i:hover {
-    color: red;
+  color: red;
 }
-
 
 .song-item.active {
-    background-color: #2f2739;
+  background-color: #2f2739;
 }
 
-
 .like-toast {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 30px;
-    right: 320px;
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 9999;
-    animation: fadeOut 2s forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 30px;
+  right: 320px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  animation: fadeOut 2s forwards;
 }
 
 @keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
 
-    90% {
-        opacity: 1;
-    }
+  90% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 .ibearyAbum {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .ibearyAbum-item {
-    display: block;
-    margin: 15px;
-    justify-content: center;
-    align-items: center;
+  display: block;
+  margin: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
 .ibearyAbum-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
 }
 
 .ibearyAbum-care {
-    color: red;
+  color: red;
 }
 
 .ibearyAbum-info {
-    color: white;
-    /* display: flex; */
+  color: white;
+  /* display: flex; */
 }
