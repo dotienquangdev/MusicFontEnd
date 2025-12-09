@@ -10,7 +10,6 @@ import Music from "../../../../pages/overviews/Music";
 
 export default function SingerDetail({ title }) {
   const { id } = useParams();
-  const [songs, setSongs] = useState([]);
   const [selectedSinger, setSelectedSinger] = useState(null);
   const [relatedSongs, setRelatedSongs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,11 +38,11 @@ export default function SingerDetail({ title }) {
         singerData.singer.forEach((singer) => {
           singerMap.set(singer._id, singer.fullName);
         });
+        // Map singer names onto songs when needed (not stored globally here)
         const songsWithSinger = songData.song.map((song) => ({
           ...song,
           singerName: singerMap.get(song.singerId) || "Không rõ",
         }));
-        setSongs(songsWithSinger);
 
         const filteredSongs = songData.song.filter(
           (song) => song.singerId === id

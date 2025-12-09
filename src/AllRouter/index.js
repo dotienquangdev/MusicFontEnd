@@ -1,5 +1,4 @@
-import { useRoutes } from "react-router-dom";
-import { routes } from "../router";
+// removed unused useRoutes and routes
 import { HelmetProvider } from "react-helmet-async";
 import { Route, Routes } from "react-router-dom";
 
@@ -15,6 +14,7 @@ import ZingMp3Clone from "../pages";
 import SongDetail from "../Layout/mainpages/musiccontainer/musicContainerItem/musicContainerItem";
 import AbumDatail from "../Layout/mainpages/abumcontainer/abumDetail/abumDeatil";
 import SingerDetail from "../Layout/mainpages/musictypecontainer/singerDetail/singerDetail";
+import Setting from "../Layout/setting/Setting";
 import Ibeary from "../Layout/ibrarys/ibrary";
 
 import Auth from "../Users/Auth/auth";
@@ -33,10 +33,8 @@ function AllRouter() {
       dispatch(systemInfo(result));
     };
     fetchSystem();
-  }, []);
+  }, [dispatch]);
   const system = useSelector((state) => state.systemInfoReducer);
-
-  const elements = useRoutes(routes);
   return (
     <>
       {/* {elements} */}
@@ -131,7 +129,7 @@ function AllRouter() {
             <Route
               path="/setting"
               element={
-                <SingerDetail title={`${system?.siteName || "Zing"}-Cài Đặt`} />
+                <Setting title={`${system?.siteName || "Zing"}-Cài Đặt`} />
               }
             ></Route>
             <Route

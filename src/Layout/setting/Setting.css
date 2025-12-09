@@ -1,0 +1,211 @@
+:root {
+  --bg: #0f0b13;
+  --panel: #17121a;
+  --muted: #8b7f99;
+  --accent: #7c4dff;
+  --text: #f3eef8;
+}
+
+.setting-page {
+  padding: 20px;
+  color: var(--text);
+}
+.setting-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.btn-refresh {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.setting-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 18px;
+}
+.setting-card {
+  background: var(--panel);
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2, 2, 10, 0.6);
+}
+.setting-card h3 {
+  margin-top: 0;
+}
+.setting-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.setting-card li {
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.02);
+}
+.system-info-extra pre {
+  max-height: 200px;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.14);
+  padding: 8px;
+  border-radius: 8px;
+}
+.note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.add-song {
+  margin-top: 12px;
+}
+.add-song-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+.inline-new-item {
+  margin: 8px 0 0 8px;
+  padding-left: 6px;
+  border-left: 2px solid rgba(124, 77, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.add-song-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+}
+.add-song-form input[type="text"],
+.add-song-form input[type="file"],
+.add-song-form select,
+.add-song-form input {
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+}
+.add-song-form textarea {
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  min-height: 80px;
+}
+.add-song-form select {
+  background: linear-gradient(
+    90deg,
+    rgba(124, 77, 255, 0.06),
+    rgba(0, 0, 0, 0.02)
+  );
+  color: var(--text);
+  border: 1px solid rgba(124, 77, 255, 0.18);
+}
+.add-song-form select:focus {
+  outline: 2px solid rgba(124, 77, 255, 0.18);
+}
+
+/* Color adjustments for singers/topics list in stats panel */
+.setting-card.stats ul li strong {
+  color: var(--accent);
+}
+.form-actions {
+  margin-top: 8px;
+}
+.form-message {
+  margin-top: 8px;
+  color: #cfe3d8;
+}
+
+/* Song List Pagination */
+.song-list-section {
+  margin-top: 18px;
+}
+
+.song-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.song-table thead {
+  background: rgba(124, 77, 255, 0.08);
+}
+
+.song-table th {
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 1px solid rgba(124, 77, 255, 0.12);
+}
+
+.song-table td {
+  padding: 10px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.02);
+  color: var(--text);
+}
+
+.song-table tbody tr:hover {
+  background: rgba(124, 77, 255, 0.04);
+}
+
+.pagination {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+
+.pagination button,
+.pagination span {
+  padding: 6px 10px;
+  border: 1px solid rgba(124, 77, 255, 0.18);
+  background: rgba(124, 77, 255, 0.06);
+  color: var(--text);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover {
+  background: rgba(124, 77, 255, 0.12);
+  border-color: rgba(124, 77, 255, 0.24);
+}
+
+.pagination button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.pagination span {
+  border: none;
+  background: transparent;
+  cursor: default;
+}
+
+.pagination-info {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .setting-grid {
+    grid-template-columns: 1fr;
+  }
+}
